@@ -1,5 +1,5 @@
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter_bizpage/_util/system.dart';
+import 'package:flutter_bizpage/_utils/system.dart';
 
 abstract class _Device {
   _Device() : _deviceInfoPlugin = DeviceInfoPlugin();

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bizpage/_extensions/context.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 
 class ScalableText extends StatelessWidget {
@@ -28,7 +29,7 @@ class ScalableText extends StatelessWidget {
   }
 
   double _resolveFontSize(BuildContext context) {
-    switch (resolveBreakpoint(context)) {
+    switch (resolveBreakpoint(context.screenWidth)) {
       case Breakpoint.huge:
         return fontSizes[0];
       case Breakpoint.large:

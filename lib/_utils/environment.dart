@@ -1,5 +1,5 @@
-import 'package:flutter_bizpage/_util/device.dart';
-import 'package:flutter_bizpage/_util/system.dart';
+import 'package:flutter_bizpage/_utils/device.dart';
+import 'package:flutter_bizpage/_utils/system.dart';
 
 class Environment {
   Environment._();

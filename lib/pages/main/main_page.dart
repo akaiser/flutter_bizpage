@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bizpage/_util/list.dart';
+import 'package:flutter_bizpage/_extensions/context.dart';
+import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_navigation/legacy_bar.dart';
 import 'package:flutter_bizpage/pages/_shared/measure_size.dart';
@@ -42,7 +43,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    final _isFullNavigationBar = isFullNavigationBar(context);
+    final _isFullNavigationBar = isFullNavigationBar(context.screenWidth);
 
     final _atTopProvider = context.read(atTopProvider);
     final _introVisibleProvider = context.read(introVisibleProvider);

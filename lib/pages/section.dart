@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bizpage/_util/environment.dart';
+import 'package:flutter_bizpage/_extensions/context.dart';
+import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/legacy_bar.dart';
 import 'package:flutter_bizpage/pages/_shared/_theme.dart';
 import 'package:flutter_bizpage/pages/_shared/formatted_text.dart';
@@ -22,7 +23,7 @@ class Section extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = AppTextTheme.of(context).paragraph;
-    final _isFullNavigationBar = isFullNavigationBar(context);
+    final _isFullNavigationBar = isFullNavigationBar(context.screenWidth);
     return ResponsiveContainer(
       child: Column(
         children: [

@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 enum Breakpoint {
   huge,
   large,
@@ -7,19 +5,18 @@ enum Breakpoint {
   small,
 }
 
-Breakpoint resolveBreakpoint(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
-  return width > 1199
+Breakpoint resolveBreakpoint(double screenWidth) {
+  return screenWidth > 1199
       ? Breakpoint.huge
-      : width > 991
+      : screenWidth > 991
           ? Breakpoint.large
-          : width > 767
+          : screenWidth > 767
               ? Breakpoint.medium
               : Breakpoint.small;
 }
 
-double resolveMaxWidth(BuildContext context) {
-  final breakpoint = resolveBreakpoint(context);
+double resolveMaxWidth(double screenWidth) {
+  final breakpoint = resolveBreakpoint(screenWidth);
   return breakpoint == Breakpoint.huge
       ? 1140
       : breakpoint == Breakpoint.large

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bizpage/_util/list.dart';
+import 'package:flutter_bizpage/_extensions/context.dart';
+import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/pages/_navigation/_data.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_shared/_theme.dart';
@@ -14,8 +15,8 @@ final statusBarColor = Colors.black.withOpacity(0.85);
 const double navigationBarHeight = 68;
 const _navigationBarHorizontalPadding = EdgeInsets.symmetric(horizontal: 20);
 
-bool isFullNavigationBar(BuildContext context) {
-  return resolveBreakpoint(context) != Breakpoint.small;
+bool isFullNavigationBar(double screenWidth) {
+  return resolveBreakpoint(screenWidth) != Breakpoint.small;
 }
 
 class NavigationBar extends StatelessWidget {
@@ -30,8 +31,9 @@ class NavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: navigationBarHeight,
-      child:
-          isFullNavigationBar(context) ? _Full(onNavTap) : _Compact(onNavTap),
+      child: isFullNavigationBar(context.screenWidth)
+          ? _Full(onNavTap)
+          : _Compact(onNavTap),
     );
   }
 }

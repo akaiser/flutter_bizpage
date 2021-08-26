@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bizpage/_util/environment.dart';
-import 'package:flutter_bizpage/_util/list.dart';
+import 'package:flutter_bizpage/_extensions/list.dart';
+import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_shared/_theme.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_layout.dart';
 import 'package:flutter_bizpage/pages/main/c_services/_data.dart';

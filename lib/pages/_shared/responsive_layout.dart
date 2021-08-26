@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bizpage/_extensions/context.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 
 class ResponsiveLayout extends StatelessWidget {
@@ -26,7 +27,7 @@ class ResponsiveLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final breakpoint = resolveBreakpoint(context);
+    final breakpoint = resolveBreakpoint(context.screenWidth);
     return breakpoint == Breakpoint.huge
         ? _hugeFallback(context)
         : breakpoint == Breakpoint.large
