@@ -1,6 +1,7 @@
 # Flutter BizPage
 
-This example attempts to mimic some UX features from
+This example attempts to mimic some UX features (like carousel, swipe & drag, scrollspy,
+pull-to-refresh and fully responsive content/navigation header/menu) from
 the [www.sgs-automobile.de](https://www.sgs-automobile.de/) website which in turn is based on
 the [BizPage](https://bootstrapmade.com/demo/templates/BizPage/) template.
 
