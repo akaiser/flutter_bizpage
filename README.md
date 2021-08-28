@@ -8,6 +8,6 @@ the [BizPage](https://bootstrapmade.com/demo/templates/BizPage/) template.
 
 ### What is supported
 
-| Android Device | Android Emulator | iOS Device     | iOS Simulator | Desktop | Web  |
-|----------------|------------------|----------------|---------------|---------|------|
-| yep            | yep              | not tested     | yep           | yep     | yep  |
+| Android Device | Android Emulator | iOS Device | iOS Simulator | Desktop | Web |
+|----------------|------------------|------------|---------------|---------|-----|
+| yep            | yep              | not tested | yep           | yep     | yep |
