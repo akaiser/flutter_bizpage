@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bizpage/_extensions/context.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_navigation/legacy_bar.dart';
@@ -42,7 +42,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     final _isFullNavigationBar = isFullNavigationBar(context.screenWidth);
 
     final _atTopProvider = context.read(atTopProvider);
@@ -61,7 +60,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     double navBarOffset() => _isFullNavigationBar
-        ? navigationBarHeight + MediaQuery.of(context).padding.top
+        ? navigationBarHeight + context.mediaQueryData.padding.top
         : 0;
 
     void animateToSection(int section) => section == 0
@@ -99,7 +98,7 @@ class _MainPageState extends State<MainPage> {
                     _atTopProvider.state = isAtTop;
                   }
 
-                  final isIntroVisible = currentOffset < screenSize.height;
+                  final isIntroVisible = currentOffset < context.screenHeight;
                   if (_introVisibleProvider.state != isIntroVisible) {
                     _introVisibleProvider.state = isIntroVisible;
                   }

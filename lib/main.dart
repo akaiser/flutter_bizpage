@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/_utils/preload.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
@@ -45,7 +46,7 @@ class _App extends StatelessWidget {
         title: title,
         theme: ThemeData(
           fontFamily: 'Open Sans',
-          textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Open Sans'),
+          textTheme: context.textTheme.apply(fontFamily: 'Open Sans'),
         ),
         home: const MainPage(),
       ),

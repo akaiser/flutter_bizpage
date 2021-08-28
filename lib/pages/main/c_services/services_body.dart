@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
-import 'package:flutter_bizpage/pages/_shared/_theme.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_layout.dart';
 import 'package:flutter_bizpage/pages/main/c_services/_data.dart';
 import 'package:flutter_bizpage/prefs.dart';
@@ -57,7 +56,7 @@ class _Service extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = AppTextTheme.of(context);
+    final textTheme = context.appTextTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -69,7 +68,7 @@ class _Service extends StatelessWidget {
               size: 36,
             ),
             const SizedBox(width: 14),
-            Text(sectionData.title, style: theme.h3),
+            Text(sectionData.title, style: textTheme.h3),
           ],
         ),
         const SizedBox(height: 6),
@@ -90,7 +89,7 @@ class _Service extends StatelessWidget {
               Expanded(
                 child: Text(
                   item,
-                  style: theme.paragraph.copyWith(height: 1.5),
+                  style: textTheme.paragraph.copyWith(height: 1.5),
                 ),
               ),
             ],

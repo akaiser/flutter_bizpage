@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 class AppTextTheme {
   const AppTextTheme(this._textTheme);
 
-  factory AppTextTheme.of(BuildContext context) => AppTextTheme(
-        Theme.of(context).textTheme,
-      );
+  factory AppTextTheme.of(TextTheme textTheme) => AppTextTheme(textTheme);
+
   final TextTheme _textTheme;
 
   TextStyle get h1 => const TextStyle(

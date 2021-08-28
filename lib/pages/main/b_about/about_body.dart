@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
-import 'package:flutter_bizpage/pages/_shared/_theme.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_layout.dart';
 import 'package:flutter_bizpage/pages/main/b_about/_data.dart';
 
@@ -48,7 +48,7 @@ class _Card extends StatelessWidget {
             children: [
               Text(
                 sectionData.title,
-                style: AppTextTheme.of(context).h3,
+                style: context.appTextTheme.h3,
               ),
               const SizedBox(height: 20),
               Container(
@@ -57,9 +57,7 @@ class _Card extends StatelessWidget {
                 child: Text(
                   sectionData.description,
                   textAlign: TextAlign.start,
-                  style: AppTextTheme.of(context).paragraph.copyWith(
-                        height: 1.5,
-                      ),
+                  style: context.appTextTheme.paragraph.copyWith(height: 1.5),
                 ),
               ),
             ],

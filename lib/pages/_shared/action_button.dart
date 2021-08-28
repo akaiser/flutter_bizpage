@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bizpage/pages/_shared/_theme.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/pages/_shared/hover_widget.dart';
 import 'package:flutter_bizpage/prefs.dart';
 
 class ActionButton extends StatelessWidget {
-  const ActionButton(this.text, {required this.onTap, Key? key})
-      : super(key: key);
+  const ActionButton(
+    this.text, {
+    required this.onTap,
+    Key? key,
+  }) : super(key: key);
 
   final String text;
   final VoidCallback onTap;
@@ -36,9 +39,9 @@ class ActionButton extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: AppTextTheme.of(context)
-                  .paragraph
-                  .copyWith(color: Colors.white),
+              style: context.appTextTheme.paragraph.copyWith(
+                color: Colors.white,
+              ),
             ),
           ),
         ),

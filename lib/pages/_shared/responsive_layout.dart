@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bizpage/_extensions/context.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 
 class ResponsiveLayout extends StatelessWidget {

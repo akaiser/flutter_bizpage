@@ -1,5 +1,6 @@
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_keyboard.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
@@ -67,14 +68,13 @@ class _IntroState extends State<Intro> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Keyboard(
       onKeyPress: (keyType) {
         _switchSlide(keyType == KeyType.left ? _prevSlide : _nextSlide);
       },
       child: SizedBox(
-        width: screenSize.width,
-        height: screenSize.height,
+        height: context.screenHeight,
+        width: context.screenWidth,
         child: NotificationListener<ScrollNotification>(
           // somehow this fixes something...
           onNotification: (_) => true,

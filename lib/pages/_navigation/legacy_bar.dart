@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bizpage/_extensions/context.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/pages/_navigation/_data.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
-import 'package:flutter_bizpage/pages/_shared/_theme.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 import 'package:flutter_bizpage/pages/_shared/hover_widget.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
@@ -93,9 +92,9 @@ class _FullMenuItem extends StatelessWidget {
           builder: (context, watch, child) {
             final raised =
                 entry.key == watch(currentSectionProvider).state || isHovering;
-            final fontStyle = AppTextTheme.of(context)
-                .medium
-                .copyWith(fontWeight: FontWeight.w700);
+            final fontStyle = context.appTextTheme.medium.copyWith(
+              fontWeight: FontWeight.w700,
+            );
             return AnimatedDefaultTextStyle(
               duration: const Duration(milliseconds: 150),
               style: fontStyle.copyWith(color: raised ? sgsRed : Colors.white),
@@ -121,7 +120,7 @@ class _Compact extends StatelessWidget {
       child: Padding(
         padding: _navigationBarHorizontalPadding,
         child: Consumer(
-          builder: (_, watch, child) => AnimatedContainer(
+          builder: (context, watch, child) => AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(6)),
@@ -168,10 +167,10 @@ class _CompactMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (context, watch, child) {
-        final fontStyle = AppTextTheme.of(context)
-            .medium
-            .copyWith(fontWeight: FontWeight.w700);
+      builder: (context, watch, _) {
+        final fontStyle = context.appTextTheme.medium.copyWith(
+          fontWeight: FontWeight.w700,
+        );
         return Text(
           entry.value.text.toUpperCase(),
           style: fontStyle.copyWith(

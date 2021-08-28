@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bizpage/pages/_shared/_theme.dart';
+import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/pages/_shared/action_button.dart';
 import 'package:flutter_bizpage/pages/_shared/formatted_text.dart';
 import 'package:flutter_bizpage/pages/_shared/scalable_text.dart';
@@ -17,9 +17,9 @@ class Middle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = AppTextTheme.of(context).paragraph.copyWith(
-          color: Colors.white,
-        );
+    final textStyle = context.appTextTheme.paragraph.copyWith(
+      color: Colors.white,
+    );
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
