@@ -28,7 +28,7 @@ class ActionButton extends StatelessWidget {
         ),
         child: RawMaterialButton(
           onPressed: onTap,
-          highlightColor: Colors.black,
+          highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           child: Padding(
