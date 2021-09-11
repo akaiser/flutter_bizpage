@@ -75,13 +75,13 @@ class _IntroState extends State<Intro> {
       child: SizedBox(
         height: context.screenHeight,
         width: context.screenWidth,
-        child: NotificationListener<ScrollNotification>(
-          // somehow this fixes something...
-          onNotification: (_) => true,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              PageView(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // disables the built in scroll indicator of the PageView
+            NotificationListener(
+              onNotification: (_) => true,
+              child: PageView(
                 controller: _pageController,
                 onPageChanged: (slide) {
                   _timer.reset();
@@ -109,25 +109,25 @@ class _IntroState extends State<Intro> {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Arrow(
-                    Direction.backward,
-                    onPressed: () => _switchSlide(_prevSlide),
-                  ),
-                  Arrow(
-                    Direction.forward,
-                    onPressed: () => _switchSlide(_nextSlide),
-                  ),
-                ],
-              ),
-              Positioned(
-                bottom: 10,
-                child: SlideIndicators(onTap: _switchSlide),
-              ),
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Arrow(
+                  Direction.backward,
+                  onPressed: () => _switchSlide(_prevSlide),
+                ),
+                Arrow(
+                  Direction.forward,
+                  onPressed: () => _switchSlide(_nextSlide),
+                ),
+              ],
+            ),
+            Positioned(
+              bottom: 10,
+              child: SlideIndicators(onTap: _switchSlide),
+            ),
+          ],
         ),
       ),
     );

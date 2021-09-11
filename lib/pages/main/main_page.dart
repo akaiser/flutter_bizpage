@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
-import 'package:flutter_bizpage/pages/_navigation/legacy_bar.dart';
+import 'package:flutter_bizpage/pages/_navigation/navigation_bar.dart';
 import 'package:flutter_bizpage/pages/_shared/measure_size.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/intro.dart';
@@ -75,7 +75,7 @@ class _MainPageState extends State<MainPage> {
                 : identifySection(startSection - 1, currentOffset);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(statusBarColor: statusBarColor),
+      value: const SystemUiOverlayStyle(statusBarColor: statusBarColor),
       child: Scaffold(
         backgroundColor: Colors.black,
         body: Stack(
@@ -91,20 +91,22 @@ class _MainPageState extends State<MainPage> {
               },
               child: Scrollbar(
                 notificationPredicate: (notification) {
-                  final metrics = notification.metrics;
-                  final currentOffset = metrics.pixels;
-                  final isAtTop = metrics.atEdge && currentOffset == 0;
-                  if (_atTopProvider.state != isAtTop) {
-                    _atTopProvider.state = isAtTop;
-                  }
+                  if (notification.metrics.axis == Axis.vertical) {
+                    final metrics = notification.metrics;
+                    final currentOffset = metrics.pixels;
+                    final isAtTop = metrics.atEdge && currentOffset == 0;
+                    if (_atTopProvider.state != isAtTop) {
+                      _atTopProvider.state = isAtTop;
+                    }
 
-                  final isIntroVisible = currentOffset < context.screenHeight;
-                  if (_introVisibleProvider.state != isIntroVisible) {
-                    _introVisibleProvider.state = isIntroVisible;
-                  }
+                    final isIntroVisible = currentOffset < context.screenHeight;
+                    if (_introVisibleProvider.state != isIntroVisible) {
+                      _introVisibleProvider.state = isIntroVisible;
+                    }
 
-                  final calculatedOffset = currentOffset + navBarOffset();
-                  updateSection(identifySection(6, calculatedOffset));
+                    final calculatedOffset = currentOffset + navBarOffset();
+                    updateSection(identifySection(6, calculatedOffset));
+                  }
                   return true;
                 },
                 controller: _scrollController,
