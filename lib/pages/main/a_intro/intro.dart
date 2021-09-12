@@ -1,13 +1,13 @@
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
+import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_keyboard.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/arrow.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/middle.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/slide_indicators.dart';
-import 'package:flutter_bizpage/prefs.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Intro extends StatefulWidget {

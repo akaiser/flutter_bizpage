@@ -10,6 +10,8 @@ extension ListEx<T> on List<T> {
     }
   }
 
+  List<T> get unmodifiable => List.unmodifiable(this);
+
   List<List<T>> chunks(int chunkSize) {
     return fold([[]], (result, x) {
       return result.last.length == chunkSize
@@ -30,6 +32,8 @@ extension IterableEx<T> on Iterable<T> {
       }
     }
   }
+
+  List<T> get unmodifiable => List.unmodifiable(this);
 
   Iterable<R> mapIndexed<R>(R Function(int index, T element) mapper) sync* {
     int i = 0;

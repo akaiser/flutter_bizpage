@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bizpage/_extensions/list.dart';
 
 final _emailLinkRegex =
     RegExp(r'[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,}\b([-a-zA-Z0-9\/]*)');
@@ -21,7 +22,7 @@ class FormattedText extends StatelessWidget {
     return Text.rich(
       TextSpan(
         style: textStyle,
-        children: [..._boldify(context, textStyle, text)],
+        children: _boldify(context, textStyle, text).unmodifiable,
       ),
       textAlign: textAlign,
     );
@@ -55,7 +56,7 @@ class FormattedText extends StatelessWidget {
     final matches = _emailLinkRegex
         .allMatches(text)
         .map((match) => match.group(0))
-        .toList(growable: false);
+        .unmodifiable;
 
     yield TextSpan(text: nonMatches[0], style: textStyle);
     for (var i = 1; i < nonMatches.length; i++) {

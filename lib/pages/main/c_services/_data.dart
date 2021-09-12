@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:flutter/material.dart' show IconData, Icons;
 
 const sectionTitle = 'Dienstleistungen';

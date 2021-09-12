@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
+import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/pages/_shared/hover_widget.dart';
-import 'package:flutter_bizpage/prefs.dart';
 
 class ActionButton extends StatelessWidget {
   const ActionButton(

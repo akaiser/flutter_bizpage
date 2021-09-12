@@ -9,22 +9,22 @@ class AboutBody extends StatelessWidget {
 
   static const double _itemSeparatorSize = 30;
 
-  List<Widget> get _cards => [...sectionData.map((item) => _Card(item))];
-
   @override
   Widget build(BuildContext context) {
+    final cards = sectionData.map<Widget>((item) => _Card(item)).unmodifiable;
+
     return ResponsiveLayout(
       medium: (_) => Row(
         children: [
-          ..._cards
+          ...cards
               .map<Widget>((card) => Expanded(child: card))
               .joinEx(const SizedBox(width: _itemSeparatorSize))
         ],
       ),
       small: (_) => Column(
-        children: [
-          ..._cards.joinEx(const SizedBox(height: _itemSeparatorSize)),
-        ],
+        children: cards
+            .joinEx(const SizedBox(height: _itemSeparatorSize))
+            .unmodifiable,
       ),
     );
   }

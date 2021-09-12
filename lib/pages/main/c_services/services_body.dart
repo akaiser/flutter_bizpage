@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
+import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_layout.dart';
 import 'package:flutter_bizpage/pages/main/c_services/_data.dart';
-import 'package:flutter_bizpage/prefs.dart';
 
 class ServicesBody extends StatelessWidget {
   const ServicesBody({Key? key}) : super(key: key);
 
   static const double _itemSeparatorSize = 30;
 
-  List<Widget> get _services => [...sectionData.map((item) => _Service(item))];
-
   @override
   Widget build(BuildContext context) {
+    final services = sectionData.map<Widget>((it) => _Service(it)).unmodifiable;
+
     return ResponsiveLayout(
       large: (_) => Row(
         children: [
-          ..._services
+          ...services
               .map<Widget>((item) => Expanded(child: item))
               .joinEx(const SizedBox(width: _itemSeparatorSize)),
         ],
@@ -26,7 +26,7 @@ class ServicesBody extends StatelessWidget {
       medium: (_) => Column(
         // TODO(albert): more stuff here
         children: [
-          ..._services
+          ...services
               .chunks(2)
               .map<Widget>(
                 (chunk) => Row(
@@ -41,9 +41,9 @@ class ServicesBody extends StatelessWidget {
         ],
       ),
       small: (_) => Column(
-        children: [
-          ..._services.joinEx(const SizedBox(height: _itemSeparatorSize)),
-        ],
+        children: services
+            .joinEx(const SizedBox(height: _itemSeparatorSize))
+            .unmodifiable,
       ),
     );
   }

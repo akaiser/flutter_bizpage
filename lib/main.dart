@@ -5,11 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
+import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/_utils/preload.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 import 'package:flutter_bizpage/pages/main/main_page.dart';
-import 'package:flutter_bizpage/prefs.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
@@ -24,13 +24,13 @@ Future<void> main() async {
 
   await Future.wait(
     introData.values
-        .map((entry) => entry.asset)
-        .map((asset) => preload(AssetImage('images/$asset.jpg'))),
+        .map((entry) => AssetImage('images/${entry.asset}.jpg'))
+        .map((assetImage) => preload(assetImage)),
   );
 
   runZonedGuarded<void>(
     () => runApp(const _App()),
-    (dynamic error, dynamic stack) {
+    (error, stack) {
       log('Some explosion here...', error: error, stackTrace: stack);
     },
   );
@@ -45,8 +45,8 @@ class _App extends StatelessWidget {
       child: MaterialApp(
         title: title,
         theme: ThemeData(
-          fontFamily: 'Open Sans',
-          textTheme: context.textTheme.apply(fontFamily: 'Open Sans'),
+          fontFamily: fontFamily,
+          textTheme: context.textTheme.apply(fontFamily: fontFamily),
         ),
         home: const MainPage(),
       ),

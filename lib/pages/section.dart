@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
+import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/navigation_bar.dart';
 import 'package:flutter_bizpage/pages/_shared/formatted_text.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_container.dart';
 import 'package:flutter_bizpage/pages/_shared/scalable_text.dart';
-import 'package:flutter_bizpage/prefs.dart';
 
 class Section extends StatelessWidget {
   const Section({
@@ -22,11 +22,11 @@ class Section extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = context.appTextTheme.paragraph;
-    final _isFullNavigationBar = isFullNavigationBar(context.screenWidth);
     return ResponsiveContainer(
       child: Column(
         children: [
-          if (!Environment.isDesktopOrWeb && !_isFullNavigationBar)
+          if (!Environment.isDesktopOrWeb &&
+              !isFullNavigationBar(context.screenWidth))
             const SizedBox(height: 19),
           const SizedBox(height: 10),
           ScalableText(

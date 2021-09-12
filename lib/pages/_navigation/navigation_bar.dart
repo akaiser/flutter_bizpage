@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
+import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/pages/_navigation/_data.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 import 'package:flutter_bizpage/pages/_shared/hover_widget.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
-import 'package:flutter_bizpage/prefs.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const statusBarColor = Color.fromRGBO(0, 0, 0, 0.85);
 // TODO(albert): make it 30 on landscape mobile
 const double navigationBarHeight = 68;
 const _navigationBarHorizontalPadding = EdgeInsets.symmetric(horizontal: 20);

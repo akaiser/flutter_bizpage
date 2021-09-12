@@ -42,19 +42,19 @@ class _Co2Text extends StatelessWidget {
 class _Logos extends StatelessWidget {
   const _Logos({Key? key}) : super(key: key);
 
-  List<Widget> get _logos => [...logoData.map((item) => _Logo(item))];
-
   @override
   Widget build(BuildContext context) {
+    final logos = logoData.map((item) => _Logo(item)).unmodifiable;
+
     return ResponsiveLayout(
       large: (_) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: _logos,
+        children: logos,
       ),
       medium: (_) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ..._logos.chunks(2).map(
+          ...logos.chunks(2).map(
                 (chunk) => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: chunk,
@@ -62,7 +62,7 @@ class _Logos extends StatelessWidget {
               ),
         ],
       ),
-      small: (_) => Column(children: _logos),
+      small: (_) => Column(children: logos),
     );
   }
 }
