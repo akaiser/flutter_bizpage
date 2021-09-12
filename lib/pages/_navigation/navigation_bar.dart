@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/_prefs.dart';
+import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/_data.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
@@ -56,9 +57,12 @@ class _Full extends StatelessWidget {
         child: Row(
           children: [
             if (context.screenWidth > _minNavWidthForLogo)
-              const Text(
-                'LOGO',
-                style: TextStyle(color: Colors.white),
+              Text(
+                'BizPage v${Environment.appVersion}',
+                style: context.appTextTheme.medium.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
               ),
             const Spacer(),
             ...navigationData.entries
