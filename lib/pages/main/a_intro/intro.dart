@@ -23,14 +23,15 @@ class Intro extends StatefulWidget {
 }
 
 class _IntroState extends State<Intro> {
-  final _pageController = PageController();
+  late PageController _pageController;
   late RestartableTimer _timer;
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController();
     _timer = RestartableTimer(
-      slideTimerInterval,
+      slideSwitchSecs,
       () => _switchSlide(_nextSlide),
     );
     // TODO(albert): when switching back to ListView
@@ -50,7 +51,7 @@ class _IntroState extends State<Intro> {
 
   void _switchSlide(int slide) => _pageController.animateToPage(
         slide,
-        duration: const Duration(milliseconds: 500),
+        duration: slideAnimateMillis,
         curve: Curves.easeInOut,
       );
 

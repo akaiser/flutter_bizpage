@@ -19,6 +19,8 @@ class Keyboard extends StatelessWidget {
         },
         super(key: key);
 
+  final focusNode = FocusNode();
+
   final Map<Type, Action<Intent>> actions;
   final Map<LogicalKeySet, _DirectionIntent> shortcuts;
 
@@ -26,11 +28,15 @@ class Keyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FocusableActionDetector(
-      autofocus: true,
-      shortcuts: shortcuts,
-      actions: actions,
-      child: child,
+    return GestureDetector(
+      onTap: () => focusNode.requestFocus(),
+      child: FocusableActionDetector(
+        focusNode: focusNode,
+        autofocus: true,
+        shortcuts: shortcuts,
+        actions: actions,
+        child: child,
+      ),
     );
   }
 }
