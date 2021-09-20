@@ -9,7 +9,7 @@ class Environment {
 
   static Future<void> init() async {
     final packageInfo = PackageInfo.fromPlatform();
-    appVersion = await packageInfo.then((value) => value.version);
+    appVersion = await packageInfo.then((info) => info.version);
 
     isDesktopOrWeb = System.isDesktop || System.isWeb;
   }
