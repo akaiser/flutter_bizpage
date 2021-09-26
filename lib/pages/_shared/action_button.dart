@@ -19,10 +19,10 @@ class ActionButton extends StatelessWidget {
       builder: (context, isHovering) => AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         decoration: BoxDecoration(
-          color: isHovering ? sgsRed : Colors.transparent,
+          color: isHovering ? sgsRedColor : Colors.transparent,
           border: Border.all(
             width: 2,
-            color: isHovering ? sgsRed : Colors.white,
+            color: isHovering ? sgsRedColor : Colors.white,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),

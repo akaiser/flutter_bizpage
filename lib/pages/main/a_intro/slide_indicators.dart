@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,11 +50,14 @@ class _SlideIndicator extends StatelessWidget {
       width: 36,
       height: 30,
       child: RawMaterialButton(
+        splashColor: Colors.transparent,
         onPressed: selected ? null : onTap,
-        child: Container(
+        child: SizedBox(
           width: 30,
           height: 3,
-          color: selected ? Colors.white : Colors.grey[500],
+          child: ColoredBox(
+            color: selected ? Colors.white : inactiveButtonColor,
+          ),
         ),
       ),
     );

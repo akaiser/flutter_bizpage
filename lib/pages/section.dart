@@ -36,7 +36,7 @@ class Section extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           const ColoredBox(
-            color: sgsRed,
+            color: sgsRedColor,
             child: SizedBox(height: 3, width: 60),
           ),
           const SizedBox(height: 16),

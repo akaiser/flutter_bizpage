@@ -93,14 +93,14 @@ class _FullMenuItem extends StatelessWidget {
         onPressed: () => onNavTap(entry.key),
         child: Consumer(
           builder: (context, watch, child) {
-            final raised =
-                entry.key == watch(currentSectionProvider).state || isHovering;
-            final fontStyle = context.appTextTheme.medium.copyWith(
-              fontWeight: FontWeight.w700,
-            );
+            final currentSection = watch(currentSectionProvider).state;
+            final isRaised = entry.key == currentSection || isHovering;
             return AnimatedDefaultTextStyle(
               duration: const Duration(milliseconds: 150),
-              style: fontStyle.copyWith(color: raised ? sgsRed : Colors.white),
+              style: context.appTextTheme.medium.copyWith(
+                fontWeight: FontWeight.w700,
+                color: isRaised ? sgsRedColor : Colors.white,
+              ),
               child: child!,
             );
           },
@@ -129,7 +129,7 @@ class _Compact extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(6)),
               color: watch(introVisibleProvider).state
                   ? Colors.transparent
-                  : Colors.black.withOpacity(0.6),
+                  : const Color.fromRGBO(0, 0, 0, 0.6),
             ),
             child: child,
           ),
@@ -179,7 +179,7 @@ class _CompactMenuItem extends StatelessWidget {
           style: fontStyle.copyWith(
             color: watch(currentSectionProvider).state != entry.key
                 ? Colors.black
-                : sgsRed,
+                : sgsRedColor,
           ),
         );
       },

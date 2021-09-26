@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/pages/_shared/hover_widget.dart';
 
 class HoverIconButton extends StatelessWidget {
@@ -13,19 +14,17 @@ class HoverIconButton extends StatelessWidget {
   final VoidCallback onPressed;
   final EdgeInsetsGeometry padding;
   final Widget icon;
-  final int iconSize;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
     return HoverWidget(
       builder: (context, isHovering) => IconButton(
-        //splashColor: Colors.transparent,
-        //splashRadius: 1,
         onPressed: onPressed,
         padding: padding,
-        color: isHovering ? Colors.white : Colors.grey[400],
-        iconSize: 36,
+        color: isHovering ? Colors.white : inactiveButtonColor,
         icon: icon,
+        iconSize: iconSize,
       ),
     );
   }

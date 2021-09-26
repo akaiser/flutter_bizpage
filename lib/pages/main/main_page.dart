@@ -3,9 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/_prefs.dart';
+import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_navigation/navigation_bar.dart';
 import 'package:flutter_bizpage/pages/_shared/measure_size.dart';
+import 'package:flutter_bizpage/pages/_shared/responsive_container.dart';
+import 'package:flutter_bizpage/pages/_shared/scalable_text.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/intro.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/intro_footer.dart';
@@ -122,20 +125,20 @@ class _MainPageState extends State<MainPage> {
                         const IntroFooter(),
                         const AboutSection(),
                         const ServicesSection(),
-                        Container(
+                        const _DummySection(
                           height: 560,
-                          color: Colors.lightGreenAccent,
-                          child: const Text('FAHRZEUGANGEBOT'),
+                          color: Colors.green,
+                          text: 'FAHRZEUGANGEBOT',
                         ),
-                        Container(
+                        const _DummySection(
                           height: 450,
-                          color: Colors.redAccent[100],
-                          child: const Text('DAS TEAM'),
+                          color: Colors.red,
+                          text: 'DAS TEAM',
                         ),
-                        Container(
+                        const _DummySection(
                           height: 440,
-                          color: Colors.blueAccent[100],
-                          child: const Text('KONTAKT'),
+                          color: Colors.blue,
+                          text: 'KONTAKT',
                         ),
                       ].mapIndexed(
                         (index, element) => MeasureSize(
@@ -146,9 +149,10 @@ class _MainPageState extends State<MainPage> {
                           child: element,
                         ),
                       ),
-                      const SizedBox(
-                        height: 800,
-                        child: Text('ELSE'),
+                      const _DummySection(
+                        height: 400,
+                        color: Colors.black,
+                        text: 'FOOTER',
                       ),
                     ],
                   ),
@@ -177,4 +181,45 @@ class _SectionHeights {
   static void set(int section, double value) => _heights[section] = value;
 
   static Iterable<MapEntry<int, double>> get entries => _heights.entries;
+}
+
+class _DummySection extends StatelessWidget {
+  const _DummySection({
+    required this.height,
+    required this.color,
+    required this.text,
+    Key? key,
+  }) : super(key: key);
+
+  final double height;
+  final Color color;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+      child: ColoredBox(
+        color: color,
+        child: ResponsiveContainer(
+          child: Column(
+            children: [
+              if (!Environment.isDesktopOrWeb &&
+                  !isFullNavigationBar(context.screenWidth))
+                const SizedBox(height: 19),
+              const SizedBox(height: 10),
+              ScalableText(
+                text.toUpperCase(),
+                fontSizes: const [32, 28, 26, 24],
+                textStyle: context.appTextTheme.paragraph.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -50,19 +50,18 @@ class _Card extends StatelessWidget {
                 sectionData.title,
                 style: context.appTextTheme.h3,
               ),
-              const SizedBox(height: 20),
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.symmetric(horizontal: 14),
-                child: Text(
-                  sectionData.description,
-                  textAlign: TextAlign.start,
-                  style: context.appTextTheme.paragraph.copyWith(height: 1.5),
+              Padding(
+                padding: const EdgeInsets.all(14),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    sectionData.description,
+                    style: context.appTextTheme.paragraph.copyWith(height: 1.5),
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 14),
         ],
       ),
     );

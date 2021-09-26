@@ -64,7 +64,7 @@ class _Service extends StatelessWidget {
           children: [
             Icon(
               sectionData.iconData,
-              color: sgsRed,
+              color: sgsRedColor,
               size: 36,
             ),
             const SizedBox(width: 14),
