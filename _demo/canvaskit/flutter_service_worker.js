@@ -3,10 +3,10 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-"version.json": "46393fa312d4a9c97513395e064882f5",
+  "version.json": "b04a6577ca1435b2d0a765bdeb7f59a7",
 "favicon.ico": "1e1019dc22fac612a61ab71f2fdffd6d",
-"index.html": "43bae8c32f0974378696e45355f8bf99",
-"": "43bae8c32f0974378696e45355f8bf99",
+"index.html": "2eab17ec34857b4aea81cf94ef9aa69d",
+"/": "2eab17ec34857b4aea81cf94ef9aa69d",
 "main.dart.js": "01e05895d58d5a2e4c8fde09ada9bea5",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
@@ -36,7 +36,7 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-"",
+  "/",
 "main.dart.js",
 "index.html",
 "assets/NOTICES",
@@ -81,7 +81,7 @@ self.addEventListener("activate", function(event) {
       for (var request of await contentCache.keys()) {
         var key = request.url.substring(origin.length + 1);
         if (key == "") {
-          key = "";
+          key = "/";
         }
         // If a resource from the old manifest is not in the new cache, or if
         // the MD5 sum has changed, delete it. Otherwise the resource is left
@@ -170,7 +170,7 @@ async function downloadOffline() {
   for (var request of await contentCache.keys()) {
     var key = request.url.substring(origin.length + 1);
     if (key == "") {
-      key = "";
+      key = "/";
     }
     currentContent[key] = true;
   }
