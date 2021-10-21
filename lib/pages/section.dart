@@ -25,10 +25,12 @@ class Section extends StatelessWidget {
     return ResponsiveContainer(
       child: Column(
         children: [
-          if (!Environment.isDesktopOrWeb &&
-              !isFullNavigationBar(context.screenWidth))
-            const SizedBox(height: 19),
-          const SizedBox(height: 10),
+          SizedBox(
+            height: !Environment.isDesktopOrWeb &&
+                    !isFullNavigationBar(context.screenWidth)
+                ? 29
+                : 10,
+          ),
           ScalableText(
             title.toUpperCase(),
             fontSizes: const [32, 28, 26, 24],

@@ -8,13 +8,11 @@ flutter clean
 flutter build apk --split-per-abi
 cp build/app/outputs/apk/release/app-* _demo/apk/
 
-flutter build web --web-renderer canvaskit
+flutter build web --web-renderer canvaskit --base-href /flutter_bizpage/canvaskit/
 cp -r build/web/* _demo/canvaskit
-sed -i "" 's|\="/"|\="/flutter_bizpage/canvaskit/"|' _demo/canvaskit/index.html
 
-flutter build web --web-renderer html
+flutter build web --web-renderer html --base-href /flutter_bizpage/html/
 cp -r build/web/* _demo/html
-sed -i "" 's|\="/"|\="/flutter_bizpage/html/"|' _demo/html/index.html
 
 git add .
 git commit -m "update demo"
