@@ -5,7 +5,7 @@ import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SlideIndicators extends StatelessWidget {
+class SlideIndicators extends ConsumerWidget {
   const SlideIndicators({
     required this.onTap,
     Key? key,
@@ -14,22 +14,18 @@ class SlideIndicators extends StatelessWidget {
   final void Function(int introId) onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, watch, child) {
-        final currentSlide = watch(currentSlideProvider).state;
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ...introData.entries.map(
-              (entry) => _SlideIndicator(
-                selected: currentSlide == entry.key,
-                onTap: () => onTap(entry.key),
-              ),
-            ),
-          ],
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentSlide = ref.watch(currentSlideProvider);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ...introData.entries.map(
+          (entry) => _SlideIndicator(
+            selected: currentSlide == entry.key,
+            onTap: () => onTap(entry.key),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -10,7 +10,7 @@ import 'package:flutter_bizpage/pages/main/a_intro/middle.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/slide_indicators.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Intro extends StatefulWidget {
+class Intro extends ConsumerStatefulWidget {
   const Intro({
     required this.onActionTap,
     Key? key,
@@ -22,7 +22,7 @@ class Intro extends StatefulWidget {
   _IntroState createState() => _IntroState();
 }
 
-class _IntroState extends State<Intro> {
+class _IntroState extends ConsumerState<Intro> {
   late PageController _pageController;
   late RestartableTimer _timer;
 
@@ -86,7 +86,7 @@ class _IntroState extends State<Intro> {
                 controller: _pageController,
                 onPageChanged: (slide) {
                   _timer.reset();
-                  context.read(currentSlideProvider).state = slide;
+                  ref.read(currentSlideProvider.state).state = slide;
                 },
                 children: [
                   ...introData.entries.map(

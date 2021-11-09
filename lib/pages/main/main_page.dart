@@ -16,14 +16,14 @@ import 'package:flutter_bizpage/pages/main/b_about/about_section.dart';
 import 'package:flutter_bizpage/pages/main/c_services/services_section.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MainPage extends StatefulWidget {
+class MainPage extends ConsumerStatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends ConsumerState<MainPage> {
   late ScrollController _scrollController;
 
   @override
@@ -48,9 +48,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     final _isFullNavigationBar = isFullNavigationBar(context.screenWidth);
 
-    final _atTopProvider = context.read(atTopProvider);
-    final _introVisibleProvider = context.read(introVisibleProvider);
-    final _currentSectionProvider = context.read(currentSectionProvider);
+    final _atTopProvider = ref.read(atTopProvider.state);
+    final _introVisibleProvider = ref.read(introVisibleProvider.state);
+    final _currentSectionProvider = ref.read(currentSectionProvider.state);
 
     double reduce(int section) => _SectionHeights.entries
         .take(section)
@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
           children: [
             RefreshIndicator(
               onRefresh: () async {
-                context.read(currentSlideProvider).state = 0;
+                ref.read(currentSlideProvider.state).state = 0;
                 await Navigator.of(context).pushReplacement(
                   MaterialPageRoute<MainPage>(
                     builder: (_) => const MainPage(),

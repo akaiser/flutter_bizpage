@@ -47,8 +47,8 @@ class _Full extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (context, watch, child) => AnimatedContainer(
-        color: watch(atTopProvider).state ? Colors.transparent : statusBarColor,
+      builder: (context, ref, child) => AnimatedContainer(
+        color: ref.watch(atTopProvider) ? Colors.transparent : statusBarColor,
         duration: const Duration(milliseconds: 500),
         child: child,
       ),
@@ -92,8 +92,8 @@ class _FullMenuItem extends StatelessWidget {
         ),
         onPressed: () => onNavTap(entry.key),
         child: Consumer(
-          builder: (context, watch, child) {
-            final currentSection = watch(currentSectionProvider).state;
+          builder: (context, ref, child) {
+            final currentSection = ref.watch(currentSectionProvider);
             final isRaised = entry.key == currentSection || isHovering;
             return AnimatedDefaultTextStyle(
               duration: const Duration(milliseconds: 150),
@@ -123,11 +123,11 @@ class _Compact extends StatelessWidget {
       child: Padding(
         padding: _navigationBarHorizontalPadding,
         child: Consumer(
-          builder: (context, watch, child) => AnimatedContainer(
+          builder: (context, ref, child) => AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(6)),
-              color: watch(introVisibleProvider).state
+              color: ref.watch(introVisibleProvider)
                   ? Colors.transparent
                   : const Color.fromRGBO(0, 0, 0, 0.6),
             ),
@@ -162,27 +162,23 @@ class _Compact extends StatelessWidget {
   }
 }
 
-class _CompactMenuItem extends StatelessWidget {
+class _CompactMenuItem extends ConsumerWidget {
   const _CompactMenuItem(this.entry, {Key? key}) : super(key: key);
 
   final MapEntry<int, NavigationItem> entry;
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, watch, _) {
-        final fontStyle = context.appTextTheme.medium.copyWith(
-          fontWeight: FontWeight.w700,
-        );
-        return Text(
-          entry.value.text.toUpperCase(),
-          style: fontStyle.copyWith(
-            color: watch(currentSectionProvider).state != entry.key
-                ? Colors.black
-                : sgsRedColor,
-          ),
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final fontStyle = context.appTextTheme.medium.copyWith(
+      fontWeight: FontWeight.w700,
+    );
+    return Text(
+      entry.value.text.toUpperCase(),
+      style: fontStyle.copyWith(
+        color: ref.watch(currentSectionProvider) != entry.key
+            ? Colors.black
+            : sgsRedColor,
+      ),
     );
   }
 }

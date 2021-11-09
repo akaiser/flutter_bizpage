@@ -36,7 +36,7 @@ extension IterableEx<T> on Iterable<T> {
   List<T> get unmodifiable => List.unmodifiable(this);
 
   Iterable<R> mapIndexed<R>(R Function(int index, T element) mapper) sync* {
-    int i = 0;
+    var i = 0;
     for (final value in this) {
       yield mapper(i++, value);
     }
