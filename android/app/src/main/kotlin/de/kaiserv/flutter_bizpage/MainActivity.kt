@@ -1,4 +1,4 @@
-package com.example.flutter_bizpage
+package de.kaiserv.flutter_bizpage
 
 import io.flutter.embedding.android.FlutterActivity
 
