@@ -30,9 +30,11 @@ Future<void> main() async {
 
   runZonedGuarded<void>(
     () => runApp(const _App()),
-    (error, stack) {
-      log('Some explosion here...', error: error, stackTrace: stack);
-    },
+    (error, stack) => log(
+      'Some explosion here...',
+      error: error,
+      stackTrace: stack,
+    ),
   );
 }
 
