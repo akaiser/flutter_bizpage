@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';

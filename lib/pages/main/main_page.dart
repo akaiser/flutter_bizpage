@@ -5,7 +5,7 @@ import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
-import 'package:flutter_bizpage/pages/_navigation/navigation_bar.dart';
+import 'package:flutter_bizpage/pages/_navigation/nav_bar.dart';
 import 'package:flutter_bizpage/pages/_shared/measure_size.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_container.dart';
 import 'package:flutter_bizpage/pages/_shared/scalable_text.dart';
@@ -163,7 +163,7 @@ class _MainPageState extends ConsumerState<MainPage> {
               child: SafeArea(
                 left: false,
                 right: false,
-                child: NavigationBar(onNavTap: animateToSection),
+                child: NavBar(onNavTap: animateToSection),
               ),
             ),
           ],

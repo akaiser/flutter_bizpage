@@ -44,7 +44,7 @@ class _Logos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logos = logoData.map((item) => _Logo(item)).unmodifiable;
+    final logos = logoData.map(_Logo.new).unmodifiable;
 
     return ResponsiveLayout(
       large: (_) => Row(
