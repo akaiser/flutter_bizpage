@@ -6,7 +6,7 @@ import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/_data.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
-import 'package:flutter_bizpage/pages/_shared/hover_widget.dart';
+import 'package:flutter_bizpage/pages/_shared/hover_region.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -83,7 +83,7 @@ class _FullMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HoverWidget(
+    return HoverRegion(
       builder: (context, isHovering) => TextButton(
         style: ButtonStyle(
           overlayColor: MaterialStateColor.resolveWith(

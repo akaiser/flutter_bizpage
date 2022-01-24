@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_prefs.dart';
-import 'package:flutter_bizpage/pages/_shared/hover_widget.dart';
+import 'package:flutter_bizpage/pages/_shared/hover_region.dart';
 
 class ActionButton extends StatelessWidget {
   const ActionButton(
@@ -15,22 +15,19 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HoverWidget(
-      builder: (context, isHovering) => AnimatedContainer(
-        duration: const Duration(milliseconds: 150),
-        decoration: BoxDecoration(
-          color: isHovering ? sgsRedColor : Colors.transparent,
-          border: Border.all(
-            width: 2,
-            color: isHovering ? sgsRedColor : Colors.white,
+    return GestureDetector(
+      onTap: onTap,
+      child: HoverRegion(
+        builder: (context, isHovering) => AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          decoration: BoxDecoration(
+            color: isHovering ? sgsRedColor : Colors.transparent,
+            border: Border.all(
+              width: 2,
+              color: isHovering ? sgsRedColor : Colors.white,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-        ),
-        child: RawMaterialButton(
-          onPressed: onTap,
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 8,

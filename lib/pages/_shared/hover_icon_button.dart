@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_prefs.dart';
-import 'package:flutter_bizpage/pages/_shared/hover_widget.dart';
+import 'package:flutter_bizpage/pages/_shared/hover_region.dart';
 
 class HoverIconButton extends StatelessWidget {
   const HoverIconButton({
@@ -18,7 +18,7 @@ class HoverIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HoverWidget(
+    return HoverRegion(
       builder: (context, isHovering) => IconButton(
         onPressed: onPressed,
         padding: padding,
