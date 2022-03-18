@@ -19,13 +19,16 @@ class HoverIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HoverRegion(
-      builder: (context, isHovering) => IconButton(
-        onPressed: onPressed,
-        padding: padding,
-        color: isHovering ? Colors.white : inactiveButtonColor,
-        icon: icon,
-        iconSize: iconSize,
-      ),
+      builder: (context, isHovering, child) {
+        return IconButton(
+          onPressed: onPressed,
+          padding: padding,
+          color: isHovering ? Colors.white : inactiveButtonColor,
+          icon: child!,
+          iconSize: iconSize,
+        );
+      },
+      child: icon,
     );
   }
 }

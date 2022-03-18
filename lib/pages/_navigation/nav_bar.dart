@@ -83,29 +83,32 @@ class _FullMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HoverRegion(
-      builder: (context, isHovering) => TextButton(
-        style: ButtonStyle(
-          overlayColor: MaterialStateColor.resolveWith(
-            (_) => Colors.transparent,
-          ),
+    return TextButton(
+      style: ButtonStyle(
+        overlayColor: MaterialStateColor.resolveWith(
+          (_) => Colors.transparent,
         ),
-        onPressed: () => onNavTap(entry.key),
-        child: Consumer(
-          builder: (context, ref, child) {
-            final currentSection = ref.watch(currentSectionProvider);
-            final isRaised = entry.key == currentSection || isHovering;
-            return AnimatedDefaultTextStyle(
-              duration: const Duration(milliseconds: 150),
-              style: context.appTextTheme.medium.copyWith(
-                fontWeight: FontWeight.w700,
-                color: isRaised ? sgsRedColor : Colors.white,
-              ),
-              child: child!,
-            );
-          },
-          child: Text(entry.value.text.toUpperCase()),
-        ),
+      ),
+      onPressed: () => onNavTap(entry.key),
+      child: HoverRegion(
+        builder: (context, isHovering, child) {
+          return Consumer(
+            builder: (context, ref, child) {
+              final currentSection = ref.watch(currentSectionProvider);
+              final isRaised = entry.key == currentSection || isHovering;
+              return AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 150),
+                style: context.appTextTheme.medium.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: isRaised ? sgsRedColor : Colors.white,
+                ),
+                child: child!,
+              );
+            },
+            child: child!,
+          );
+        },
+        child: Text(entry.value.text.toUpperCase()),
       ),
     );
   }
