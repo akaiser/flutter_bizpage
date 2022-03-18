@@ -18,30 +18,42 @@ class ActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: HoverRegion(
-        builder: (context, isHovering) => AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          decoration: BoxDecoration(
-            color: isHovering ? sgsRedColor : Colors.transparent,
-            border: Border.all(
-              width: 2,
-              color: isHovering ? sgsRedColor : Colors.white,
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 8,
-              horizontal: 20,
-            ),
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: context.appTextTheme.paragraph.copyWith(
-                color: Colors.white,
+        builder: (context, isHovering, child) {
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            decoration: BoxDecoration(
+              color: isHovering ? sgsRedColor : Colors.transparent,
+              border: Border.all(
+                width: 2,
+                color: isHovering ? sgsRedColor : Colors.white,
               ),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
-          ),
-        ),
+            child: child!,
+          );
+        },
+        child: _ActionButtonText(text),
+      ),
+    );
+  }
+}
+
+class _ActionButtonText extends StatelessWidget {
+  const _ActionButtonText(this.text, {Key? key}) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 20,
+      ),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: context.appTextTheme.paragraph.copyWith(color: Colors.white),
       ),
     );
   }

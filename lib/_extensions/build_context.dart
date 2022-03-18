@@ -10,5 +10,5 @@ extension BuildContextEx on BuildContext {
 
   TextTheme get textTheme => Theme.of(this).textTheme;
 
-  AppTextTheme get appTextTheme => AppTextTheme.of(textTheme);
+  AppTextTheme get appTextTheme => AppTextTheme(textTheme);
 }
