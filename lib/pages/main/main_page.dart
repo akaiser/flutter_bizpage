@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
-import 'package:flutter_bizpage/_extensions/list.dart';
+import 'package:flutter_bizpage/_extensions/iterable.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/_state.dart';
@@ -17,7 +17,7 @@ import 'package:flutter_bizpage/pages/main/c_services/services_section.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MainPage extends ConsumerStatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -188,8 +188,7 @@ class _DummySection extends StatelessWidget {
     required this.height,
     required this.color,
     required this.text,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final double height;
   final Color color;

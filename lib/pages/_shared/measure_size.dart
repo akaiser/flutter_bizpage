@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 
 class MeasureSize extends SingleChildRenderObjectWidget {
   const MeasureSize({
+    super.key,
     required this.onChange,
-    required Widget child,
-    Key? key,
-  }) : super(key: key, child: child);
+    required Widget super.child,
+  });
 
   final void Function(double height) onChange;
 
@@ -19,7 +19,7 @@ class MeasureSize extends SingleChildRenderObjectWidget {
 class _MeasureSizeRenderObject extends RenderProxyBox {
   _MeasureSizeRenderObject(this.onChange);
 
-  var oldSize = Size.zero;
+  Size oldSize = Size.zero;
   final void Function(double height) onChange;
 
   @override
@@ -32,7 +32,7 @@ class _MeasureSizeRenderObject extends RenderProxyBox {
     }
 
     oldSize = newSize;
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       onChange(newSize.height);
     });
   }

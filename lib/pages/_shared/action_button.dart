@@ -6,9 +6,9 @@ import 'package:flutter_bizpage/pages/_shared/hover_region.dart';
 class ActionButton extends StatelessWidget {
   const ActionButton(
     this.text, {
+    super.key,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final String text;
   final VoidCallback onTap;
@@ -29,7 +29,7 @@ class ActionButton extends StatelessWidget {
               ),
               borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
-            child: child!,
+            child: child,
           );
         },
         child: _ActionButtonText(text),
@@ -39,7 +39,7 @@ class ActionButton extends StatelessWidget {
 }
 
 class _ActionButtonText extends StatelessWidget {
-  const _ActionButtonText(this.text, {Key? key}) : super(key: key);
+  const _ActionButtonText(this.text);
 
   final String text;
 

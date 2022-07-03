@@ -4,12 +4,12 @@ import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   const ResponsiveLayout({
+    super.key,
     required this.small,
     this.huge,
     this.large,
     this.medium,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final WidgetBuilder? huge;
   final WidgetBuilder? large;

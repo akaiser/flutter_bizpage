@@ -9,9 +9,9 @@ enum Direction {
 class Arrow extends StatelessWidget {
   const Arrow(
     this.direction, {
+    super.key,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final Direction direction;
   final VoidCallback onPressed;

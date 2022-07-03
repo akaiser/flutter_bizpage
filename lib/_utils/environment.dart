@@ -8,9 +8,7 @@ class Environment {
   static late bool isDesktopOrWeb;
 
   static Future<void> init() async {
-    final packageInfo = PackageInfo.fromPlatform();
-    appVersion = await packageInfo.then((info) => info.version);
-
+    appVersion = await PackageInfo.fromPlatform().then((info) => info.version);
     isDesktopOrWeb = System.isDesktop || System.isWeb;
   }
 }

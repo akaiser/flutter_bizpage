@@ -12,9 +12,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Intro extends ConsumerStatefulWidget {
   const Intro({
+    super.key,
     required this.onActionTap,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final void Function(int section) onActionTap;
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
+import 'package:flutter_bizpage/_extensions/iterable.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
@@ -7,13 +8,13 @@ import 'package:flutter_bizpage/pages/_shared/responsive_layout.dart';
 import 'package:flutter_bizpage/pages/main/c_services/_data.dart';
 
 class ServicesBody extends StatelessWidget {
-  const ServicesBody({Key? key}) : super(key: key);
+  const ServicesBody({super.key});
 
   static const double _itemSeparatorSize = 30;
 
   @override
   Widget build(BuildContext context) {
-    final services = sectionData.map<Widget>((it) => _Service(it)).unmodifiable;
+    final services = sectionData.map<Widget>(_Service.new).unmodifiable;
 
     return ResponsiveLayout(
       large: (_) => Row(
@@ -50,7 +51,7 @@ class ServicesBody extends StatelessWidget {
 }
 
 class _Service extends StatelessWidget {
-  const _Service(this.sectionData, {Key? key}) : super(key: key);
+  const _Service(this.sectionData, {super.key});
 
   final SectionData sectionData;
 

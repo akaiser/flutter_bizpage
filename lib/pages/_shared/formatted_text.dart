@@ -1,17 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bizpage/_extensions/list.dart';
+import 'package:flutter_bizpage/_extensions/iterable.dart';
 
 final _emailLinkRegex =
     RegExp(r'[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,}\b([-a-zA-Z0-9\/]*)');
 
 class FormattedText extends StatelessWidget {
   const FormattedText({
+    super.key,
     required this.text,
     required this.textStyle,
     this.textAlign = TextAlign.center,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final String text;
   final TextStyle textStyle;

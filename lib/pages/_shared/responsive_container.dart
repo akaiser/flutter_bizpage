@@ -4,9 +4,9 @@ import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 
 class ResponsiveContainer extends StatelessWidget {
   const ResponsiveContainer({
+    super.key,
     required this.child,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
