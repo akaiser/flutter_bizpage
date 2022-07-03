@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
-import 'package:flutter_bizpage/_extensions/list.dart';
+import 'package:flutter_bizpage/_extensions/iterable.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_layout.dart';
 import 'package:flutter_bizpage/pages/main/b_about/_data.dart';
 
 class AboutBody extends StatelessWidget {
-  const AboutBody({Key? key}) : super(key: key);
+  const AboutBody({super.key});
 
   static const double _itemSeparatorSize = 30;
 
   @override
   Widget build(BuildContext context) {
-    final cards = sectionData.map<Widget>((item) => _Card(item)).unmodifiable;
+    final cards = sectionData.map<Widget>(_Card.new).unmodifiable;
 
     return ResponsiveLayout(
       medium: (_) => Row(
@@ -31,7 +31,7 @@ class AboutBody extends StatelessWidget {
 }
 
 class _Card extends StatelessWidget {
-  const _Card(this.sectionData, {Key? key}) : super(key: key);
+  const _Card(this.sectionData, {super.key});
 
   final SectionData sectionData;
 

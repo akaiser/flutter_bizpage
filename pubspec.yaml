@@ -1,26 +1,24 @@
 name: flutter_bizpage
 description: Flutter BizPage
 publish_to: none
-version: 0.0.8
+version: 0.0.9
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0"
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.3"
 
 dependencies:
+  device_info_plus: ^4.0.0
   flutter:
     sdk: flutter
-
-  device_info_plus: ^3.2.2
-  flutter_riverpod: ^1.0.3
-  url_launcher: ^6.0.20
-  package_info_plus: ^1.4.0
+  flutter_riverpod: ^1.0.4
+  package_info_plus: ^1.4.2
+  url_launcher: ^6.1.4
 
 dev_dependencies:
-  akaiser_flutter_lints:
-    git: https://github.com/akaiser/akaiser_flutter_lints.git
   flutter_test:
     sdk: flutter
+  very_good_analysis: ^3.0.1
 
 flutter:
   assets:

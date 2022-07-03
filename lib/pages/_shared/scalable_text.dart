@@ -5,12 +5,14 @@ import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 class ScalableText extends StatelessWidget {
   const ScalableText(
     this.text, {
+    super.key,
     required this.fontSizes,
     required this.textStyle,
     this.textAlign = TextAlign.center,
-    Key? key,
-  })  : assert(fontSizes.length == 4),
-        super(key: key);
+  }) : assert(
+          fontSizes.length == 4,
+          'one needs to provide four font sizes',
+        );
 
   final String text;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
-import 'package:flutter_bizpage/_extensions/list.dart';
+import 'package:flutter_bizpage/_extensions/iterable.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/_data.dart';
@@ -20,9 +20,9 @@ bool isFullNavigationBar(double screenWidth) {
 
 class NavBar extends StatelessWidget {
   const NavBar({
+    super.key,
     required this.onNavTap,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final void Function(int section) onNavTap;
 
@@ -38,7 +38,7 @@ class NavBar extends StatelessWidget {
 }
 
 class _Full extends StatelessWidget {
-  const _Full(this.onNavTap, {Key? key}) : super(key: key);
+  const _Full(this.onNavTap);
 
   final void Function(int section) onNavTap;
 
@@ -76,7 +76,7 @@ class _Full extends StatelessWidget {
 }
 
 class _FullMenuItem extends StatelessWidget {
-  const _FullMenuItem(this.entry, this.onNavTap, {Key? key}) : super(key: key);
+  const _FullMenuItem(this.entry, this.onNavTap);
 
   final MapEntry<int, NavigationItem> entry;
   final void Function(int section) onNavTap;
@@ -105,7 +105,7 @@ class _FullMenuItem extends StatelessWidget {
                 child: child!,
               );
             },
-            child: child!,
+            child: child,
           );
         },
         child: Text(entry.value.text.toUpperCase()),
@@ -115,7 +115,7 @@ class _FullMenuItem extends StatelessWidget {
 }
 
 class _Compact extends StatelessWidget {
-  const _Compact(this.onNavTap, {Key? key}) : super(key: key);
+  const _Compact(this.onNavTap);
 
   final void Function(int section) onNavTap;
 
@@ -166,7 +166,7 @@ class _Compact extends StatelessWidget {
 }
 
 class _CompactMenuItem extends ConsumerWidget {
-  const _CompactMenuItem(this.entry, {Key? key}) : super(key: key);
+  const _CompactMenuItem(this.entry);
 
   final MapEntry<int, NavigationItem> entry;
 

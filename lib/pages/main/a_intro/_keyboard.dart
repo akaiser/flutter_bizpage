@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 
 class Keyboard extends StatelessWidget {
   Keyboard({
+    super.key,
     required void Function(KeyType keyType) onKeyPress,
     required this.child,
-    Key? key,
   })  : actions = {
           _DirectionIntent: CallbackAction<_DirectionIntent>(
             onInvoke: (intent) => onKeyPress(intent.keyType),
@@ -16,8 +16,7 @@ class Keyboard extends StatelessWidget {
               const _DirectionIntent.backward(),
           LogicalKeySet(LogicalKeyboardKey.arrowRight):
               const _DirectionIntent.forward(),
-        },
-        super(key: key);
+        };
 
   final focusNode = FocusNode();
 
@@ -29,7 +28,7 @@ class Keyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => focusNode.requestFocus(),
+      onTap: focusNode.requestFocus,
       child: FocusableActionDetector(
         focusNode: focusNode,
         autofocus: true,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
+import 'package:flutter_bizpage/_extensions/iterable.dart';
 import 'package:flutter_bizpage/_extensions/list.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_layout.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class IntroFooter extends StatelessWidget {
-  const IntroFooter({Key? key}) : super(key: key);
+  const IntroFooter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class IntroFooter extends StatelessWidget {
 }
 
 class _Co2Text extends StatelessWidget {
-  const _Co2Text({Key? key}) : super(key: key);
+  const _Co2Text();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _Co2Text extends StatelessWidget {
 }
 
 class _Logos extends StatelessWidget {
-  const _Logos({Key? key}) : super(key: key);
+  const _Logos();
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,7 @@ class _Logos extends StatelessWidget {
 }
 
 class _Logo extends StatelessWidget {
-  const _Logo(this.logoData, {Key? key}) : super(key: key);
+  const _Logo(this.logoData, {super.key});
 
   final LogoData logoData;
 
@@ -77,7 +78,7 @@ class _Logo extends StatelessWidget {
     return InkWell(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      onTap: () async => launch(logoData.link),
+      onTap: () async => launchUrl(Uri.parse(logoData.link)),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Image.asset(

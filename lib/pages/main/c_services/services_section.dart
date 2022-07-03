@@ -4,7 +4,7 @@ import 'package:flutter_bizpage/pages/main/c_services/services_body.dart';
 import 'package:flutter_bizpage/pages/section.dart';
 
 class ServicesSection extends StatelessWidget {
-  const ServicesSection({Key? key}) : super(key: key);
+  const ServicesSection({super.key});
 
   @override
   Widget build(BuildContext context) {

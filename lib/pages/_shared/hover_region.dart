@@ -3,10 +3,10 @@ import 'package:flutter_bizpage/pages/_shared/clickable_region.dart';
 
 class HoverRegion extends StatefulWidget {
   const HoverRegion({
+    super.key,
     required this.builder,
     this.child,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final Widget Function(
     BuildContext context,

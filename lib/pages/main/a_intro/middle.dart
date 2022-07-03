@@ -8,9 +8,9 @@ import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 class Middle extends StatelessWidget {
   const Middle(
     this.introData, {
+    super.key,
     required this.onActionTap,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final IntroData introData;
   final VoidCallback onActionTap;

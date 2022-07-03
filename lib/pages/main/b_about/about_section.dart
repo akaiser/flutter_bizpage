@@ -4,7 +4,7 @@ import 'package:flutter_bizpage/pages/main/b_about/about_body.dart';
 import 'package:flutter_bizpage/pages/section.dart';
 
 class AboutSection extends StatelessWidget {
-  const AboutSection({Key? key}) : super(key: key);
+  const AboutSection({super.key});
 
   @override
   Widget build(BuildContext context) {

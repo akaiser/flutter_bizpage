@@ -9,11 +9,11 @@ import 'package:flutter_bizpage/pages/_shared/scalable_text.dart';
 
 class Section extends StatelessWidget {
   const Section({
+    super.key,
     required this.title,
     required this.description,
     required this.body,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final String title;
   final String description;

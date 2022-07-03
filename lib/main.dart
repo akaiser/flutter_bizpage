@@ -25,7 +25,7 @@ Future<void> main() async {
   await Future.wait(
     introData.values
         .map((entry) => AssetImage('images/${entry.asset}.jpg'))
-        .map((assetImage) => preload(assetImage)),
+        .map(preload),
   );
 
   runZonedGuarded<void>(
@@ -39,7 +39,7 @@ Future<void> main() async {
 }
 
 class _App extends StatelessWidget {
-  const _App({Key? key}) : super(key: key);
+  const _App();
 
   @override
   Widget build(BuildContext context) {

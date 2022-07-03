@@ -4,12 +4,12 @@ import 'package:flutter_bizpage/pages/_shared/hover_region.dart';
 
 class HoverIconButton extends StatelessWidget {
   const HoverIconButton({
+    super.key,
     required this.onPressed,
     required this.padding,
     required this.icon,
     this.iconSize = 36,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final VoidCallback onPressed;
   final EdgeInsetsGeometry padding;
