@@ -21,6 +21,8 @@ class Keyboard extends StatelessWidget {
   final focusNode = FocusNode();
 
   final Map<Type, Action<Intent>> actions;
+
+  // ignore: library_private_types_in_public_api
   final Map<LogicalKeySet, _DirectionIntent> shortcuts;
 
   final Widget child;
