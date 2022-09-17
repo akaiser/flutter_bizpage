@@ -17,7 +17,7 @@ class HoverRegion extends StatefulWidget {
   final Widget? child;
 
   @override
-  _HoverRegionState createState() => _HoverRegionState();
+  State<HoverRegion> createState() => _HoverRegionState();
 }
 
 class _HoverRegionState extends State<HoverRegion> {

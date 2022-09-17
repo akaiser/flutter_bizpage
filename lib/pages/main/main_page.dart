@@ -20,7 +20,7 @@ class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
 
   @override
-  _MainPageState createState() => _MainPageState();
+  ConsumerState<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends ConsumerState<MainPage> {

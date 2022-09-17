@@ -19,7 +19,7 @@ class Intro extends ConsumerStatefulWidget {
   final void Function(int section) onActionTap;
 
   @override
-  _IntroState createState() => _IntroState();
+  ConsumerState<Intro> createState() => _IntroState();
 }
 
 class _IntroState extends ConsumerState<Intro> {
