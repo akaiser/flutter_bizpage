@@ -1,83 +1,89 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <base href="/flutter_bizpage/">
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
 
-    <meta charset="UTF-8">
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
 
-    <meta name="description"
-          content="Willkommen bei SGS-Automobile GmbH & Co. KG in Herbrechtingen. Wir sind Dodge und RAM Vertragspartner und Servicepartner für Chrysler und Jeep.">
-    <meta name="keywords"
-          content="jeep,renegade,cherokee,grand,wrangler,unlimited,compass,phev,dodge,challenger,charger,durango,ram,sgs,automobile,herbrechtingen,kfz,werkstatt,lpg,prins,autogas">
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
 
-    <!-- browser title/tabs stuff -->
-    <meta name="theme-color" content="#000000">
-    <meta name="msapplication-navbutton-color" content="#000000">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/flutter_bizpage/">
 
-    <!-- iOS meta tags & icons -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="flutter_bizpage">
-    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
 
-    <!-- Favicon -->
-    <!--link rel="icon" type="image/png" href="favicon.png"/-->
-    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <meta name="description"
+        content="Willkommen bei SGS-Automobile GmbH & Co. KG in Herbrechtingen. Wir sind Dodge und RAM Vertragspartner und Servicepartner für Chrysler und Jeep.">
+  <meta name="keywords"
+        content="jeep,renegade,cherokee,grand,wrangler,unlimited,compass,phev,dodge,challenger,charger,durango,ram,sgs,automobile,herbrechtingen,kfz,werkstatt,lpg,prins,autogas">
 
-    <link rel="manifest" href="manifest.json">
-    <style>
-        body {
-            margin: 0;
-            background-color: black;
-            background-image: url(assets/images/1_rez.jpg);
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-        #loading {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            margin-top: -20px;
-            text-align: center;
+  <!-- browser title/tabs stuff -->
+  <meta name="theme-color" content="#000000">
+  <meta name="msapplication-navbutton-color" content="#000000">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
 
-            font: 16px sans-serif;
-            color: white;
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="flutter_bizpage">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-            /*-webkit-text-fill-color: transparent;
-            -webkit-text-stroke: 1px;*/
+  <!-- Favicon -->
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 
-            -webkit-animation: pulsate 1s ease-out;
-            -webkit-animation-iteration-count: infinite;
-            opacity: 0.2;
-        }
-        @-webkit-keyframes pulsate {
-            0% { opacity: 0.2; }
-            50% { opacity: 1.0; }
-            100% { opacity: 0.2; }
-        }
-    </style>
+  <title>flutter_bizpage</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+      body {
+          margin: 0;
+          background-color: black;
+          background-image: url(assets/images/1_rez.jpg);
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+      }
 
-    <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = '77636960';
+      #loading {
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          margin-top: -20px;
+          text-align: center;
 
-    </script>
-    <!-- This script adds the flutter initialization JS code -->
-    <script src="flutter.js" defer></script>
+          font: 16px sans-serif;
+          color: white;
+
+          /*-webkit-text-fill-color: transparent;
+          -webkit-text-stroke: 1px;*/
+
+          -webkit-animation: pulsate 1s ease-out;
+          -webkit-animation-iteration-count: infinite;
+          opacity: 0.2;
+      }
+
+      @-webkit-keyframes pulsate {
+          0% {
+              opacity: 0.2;
+          }
+          50% {
+              opacity: 1.0;
+          }
+          100% {
+              opacity: 0.2;
+          }
+      }
+  </style>
 </head>
 <body>
 <div id="loading">loading...</div>
-<script>
-    window.addEventListener('load', function () {
-    _flutter.loader.loadEntrypoint({serviceWorker: {serviceWorkerVersion: serviceWorkerVersion}})
-        .then((engineInitializer) => engineInitializer.initializeEngine())
-        .then((appRunner) => appRunner.runApp())
-        .then(() => document.querySelector('#loading').remove());
-    });
-</script>
+<script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
