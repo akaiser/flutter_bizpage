@@ -19,11 +19,8 @@ jobs:
           #  build-dir: build/windows/runner/Release
     runs-on: ${{ matrix.runs-on }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.3.2"
-          channel: "stable"
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-flutter
       - name: Build
         run: flutter build ${{ matrix.platform }}
       - name: Zip

@@ -8,8 +8,8 @@ import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 class Middle extends StatelessWidget {
   const Middle(
     this.introData, {
-    super.key,
     required this.onActionTap,
+    super.key,
   });
 
   final IntroData introData;
@@ -17,7 +17,7 @@ class Middle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = context.appTextTheme.paragraph.copyWith(
+    final textStyle = context.tt.paragraph?.copyWith(
       color: Colors.white,
     );
     return Column(
@@ -28,12 +28,12 @@ class Middle extends StatelessWidget {
             ScalableText(
               introData.title,
               fontSizes: const [48, 38, 28, 26],
-              textStyle: textStyle.copyWith(fontWeight: FontWeight.bold),
+              textStyle: textStyle?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 30),
             FormattedText(
               text: introData.text,
-              textStyle: textStyle.copyWith(height: 1.5),
+              textStyle: textStyle?.copyWith(height: 1.5),
             ),
           ],
         ),

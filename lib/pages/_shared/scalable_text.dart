@@ -5,30 +5,28 @@ import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 class ScalableText extends StatelessWidget {
   const ScalableText(
     this.text, {
-    super.key,
     required this.fontSizes,
     required this.textStyle,
     this.textAlign = TextAlign.center,
+    super.key,
   }) : assert(
-          fontSizes.length == 4,
-          'one needs to provide four font sizes',
-        );
+         fontSizes.length == 4,
+         'one needs to provide four font sizes',
+       );
 
   final String text;
 
   // huge | large | medium | small
   final List<double> fontSizes;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final TextAlign textAlign;
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      textAlign: textAlign,
-      style: textStyle.copyWith(fontSize: _resolveFontSize(context)),
-    );
-  }
+  Widget build(BuildContext context) => Text(
+    text,
+    textAlign: textAlign,
+    style: textStyle?.copyWith(fontSize: _resolveFontSize(context)),
+  );
 
   double _resolveFontSize(BuildContext context) {
     switch (resolveBreakpoint(context.screenWidth)) {

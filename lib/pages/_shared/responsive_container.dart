@@ -4,22 +4,20 @@ import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 
 class ResponsiveContainer extends StatelessWidget {
   const ResponsiveContainer({
-    super.key,
     required this.child,
+    super.key,
   });
 
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: SizedBox(
-          width: resolveMaxWidth(context.screenWidth),
-          child: child,
-        ),
+  Widget build(BuildContext context) => Center(
+    child: Padding(
+      padding: const EdgeInsets.all(14),
+      child: SizedBox(
+        width: resolveMaxWidth(context.screenWidth),
+        child: child,
       ),
-    );
-  }
+    ),
+  );
 }

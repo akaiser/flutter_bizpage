@@ -2,35 +2,34 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bizpage/_extensions/iterable.dart';
 
-final _emailLinkRegex =
-    RegExp(r'[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,}\b([-a-zA-Z0-9\/]*)');
+final _emailLinkRegex = RegExp(
+  r'[-a-zA-Z\d@:%._+~#=]{2,256}\.[a-z]{2,}\b([-a-zA-Z\d/]*)',
+);
 
 class FormattedText extends StatelessWidget {
   const FormattedText({
-    super.key,
     required this.text,
     required this.textStyle,
     this.textAlign = TextAlign.center,
+    super.key,
   });
 
   final String text;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final TextAlign textAlign;
 
   @override
-  Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        style: textStyle,
-        children: _boldify(context, textStyle, text).unmodifiable,
-      ),
-      textAlign: textAlign,
-    );
-  }
+  Widget build(BuildContext context) => Text.rich(
+    TextSpan(
+      style: textStyle,
+      children: _boldify(context, textStyle, text).unmodifiable,
+    ),
+    textAlign: textAlign,
+  );
 
   Iterable<TextSpan> _boldify(
     BuildContext context,
-    TextStyle textStyle,
+    TextStyle? textStyle,
     String text,
   ) sync* {
     final parts = text.split('**');
@@ -41,7 +40,7 @@ class FormattedText extends StatelessWidget {
       } else {
         yield TextSpan(
           text: text,
-          style: textStyle.copyWith(fontWeight: FontWeight.bold),
+          style: textStyle?.copyWith(fontWeight: FontWeight.bold),
         );
       }
     }
@@ -49,7 +48,7 @@ class FormattedText extends StatelessWidget {
 
   Iterable<TextSpan> _linkify(
     BuildContext context,
-    TextStyle textStyle,
+    TextStyle? textStyle,
     String text,
   ) sync* {
     final nonMatches = text.split(_emailLinkRegex);
@@ -64,25 +63,24 @@ class FormattedText extends StatelessWidget {
       final trailing = nonMatches[i];
       yield TextSpan(
         text: link,
-        style: textStyle.copyWith(
+        style: textStyle?.copyWith(
           fontWeight: FontWeight.bold,
           color: Colors.green,
         ),
-        recognizer: _onLinkTapRecognizer(context, link!),
+        recognizer: _onLinkTapRecognizer(context, link),
       );
       yield TextSpan(text: trailing, style: textStyle);
     }
   }
 
-  GestureRecognizer _onLinkTapRecognizer(BuildContext context, String link) {
-    return TapGestureRecognizer()
-      ..onTap = () {
-        Feedback.forTap(context);
-        //context.injection.dispatch(
-        //  NavigateToUrlAction(
-        //    link.contains('@') ? 'mailto:$link' : 'https://$link',
-        //  ),
-        //);
-      };
-  }
+  GestureRecognizer _onLinkTapRecognizer(BuildContext context, String? link) =>
+      TapGestureRecognizer()
+        ..onTap = () {
+          Feedback.forTap(context);
+          //context.injection.dispatch(
+          //  NavigateToUrlAction(
+          //    link.contains('@') ? 'mailto:$link' : 'https://$link',
+          //  ),
+          //);
+        };
 }

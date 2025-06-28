@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SlideIndicators extends ConsumerWidget {
   const SlideIndicators({
-    super.key,
     required this.onTap,
+    super.key,
   });
 
   final void Function(int introId) onTap;
@@ -39,21 +39,19 @@ class _SlideIndicator extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 36,
-      height: 30,
-      child: RawMaterialButton(
-        splashColor: Colors.transparent,
-        onPressed: isSelected ? null : onTap,
-        child: SizedBox(
-          width: 30,
-          height: 3,
-          child: ColoredBox(
-            color: isSelected ? Colors.white : inactiveButtonColor,
-          ),
+  Widget build(BuildContext context) => SizedBox(
+    width: 36,
+    height: 30,
+    child: RawMaterialButton(
+      splashColor: Colors.transparent,
+      onPressed: isSelected ? null : onTap,
+      child: SizedBox(
+        width: 30,
+        height: 3,
+        child: ColoredBox(
+          color: isSelected ? Colors.white : inactiveButtonColor,
         ),
       ),
-    );
-  }
+    ),
+  );
 }

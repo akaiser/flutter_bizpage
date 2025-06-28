@@ -10,34 +10,30 @@ class IntroFooter extends StatelessWidget {
   const IntroFooter({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Colors.black,
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          children: const [
-            _Co2Text(),
-            SizedBox(height: 10),
-            _Logos(),
-          ],
-        ),
+  Widget build(BuildContext context) => const ColoredBox(
+    color: Colors.black,
+    child: Padding(
+      padding: EdgeInsets.all(14),
+      child: Column(
+        children: [
+          _Co2Text(),
+          SizedBox(height: 10),
+          _Logos(),
+        ],
       ),
-    );
-  }
+    ),
+  );
 }
 
 class _Co2Text extends StatelessWidget {
   const _Co2Text();
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      co2Text,
-      textAlign: TextAlign.justify,
-      style: context.appTextTheme.small.copyWith(color: Colors.white),
-    );
-  }
+  Widget build(BuildContext context) => Text(
+    co2Text,
+    textAlign: TextAlign.justify,
+    style: context.tt.small?.copyWith(color: Colors.white),
+  );
 }
 
 class _Logos extends StatelessWidget {
@@ -55,7 +51,9 @@ class _Logos extends StatelessWidget {
       medium: (_) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ...logos.chunks(2).map(
+          ...logos
+              .chunks(2)
+              .map(
                 (chunk) => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: chunk,
@@ -74,18 +72,16 @@ class _Logo extends StatelessWidget {
   final LogoData logoData;
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      onTap: () async => launchUrl(Uri.parse(logoData.link)),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Image.asset(
-          'images/${logoData.asset}.png',
-          height: logoData.height,
-        ),
+  Widget build(BuildContext context) => InkWell(
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    onTap: () => launchUrl(Uri.parse(logoData.link)),
+    child: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Image.asset(
+        'images/${logoData.asset}.png',
+        height: logoData.height,
       ),
-    );
-  }
+    ),
+  );
 }

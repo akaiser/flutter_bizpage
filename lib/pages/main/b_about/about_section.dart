@@ -7,19 +7,17 @@ class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage('images/about.jpg'),
-        ),
+  Widget build(BuildContext context) => const DecoratedBox(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        fit: BoxFit.cover,
+        image: AssetImage('images/about.jpg'),
       ),
-      child: Section(
-        title: sectionTitle,
-        description: sectionDescription,
-        body: AboutBody(),
-      ),
-    );
-  }
+    ),
+    child: Section(
+      title: sectionTitle,
+      description: sectionDescription,
+      body: AboutBody(),
+    ),
+  );
 }

@@ -17,9 +17,9 @@ class MobileDevice extends _Device {
   @override
   Future<bool> get isPhysicalDevice {
     if (System.isAndroid) {
-      return _deviceInfoPlugin.androidInfo
-          .then((info) => info.isPhysicalDevice)
-          .then((isPhysicalDevice) => isPhysicalDevice ?? false);
+      return _deviceInfoPlugin.androidInfo.then(
+        (info) => info.isPhysicalDevice,
+      );
     }
 
     return _deviceInfoPlugin.iosInfo.then((info) => info.isPhysicalDevice);
@@ -28,9 +28,7 @@ class MobileDevice extends _Device {
   @override
   Future<String> get manufacturer {
     if (System.isAndroid) {
-      return _deviceInfoPlugin.androidInfo
-          .then((info) => info.manufacturer)
-          .then((manufacturer) => manufacturer ?? 'NA');
+      return _deviceInfoPlugin.androidInfo.then((info) => info.manufacturer);
     }
     return _deviceInfoPlugin.iosInfo
         .then((info) => info.identifierForVendor)
@@ -40,14 +38,10 @@ class MobileDevice extends _Device {
   @override
   Future<String> get model {
     if (System.isAndroid) {
-      return _deviceInfoPlugin.androidInfo
-          .then((info) => info.model)
-          .then((model) => model ?? 'NA');
+      return _deviceInfoPlugin.androidInfo.then((info) => info.model);
     }
 
-    return _deviceInfoPlugin.iosInfo
-        .then((info) => info.model)
-        .then((model) => model ?? 'NA');
+    return _deviceInfoPlugin.iosInfo.then((info) => info.model);
   }
 }
 

@@ -7,14 +7,12 @@ class ServicesSection extends StatelessWidget {
   const ServicesSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const ColoredBox(
-      color: Colors.white,
-      child: Section(
-        title: sectionTitle,
-        description: sectionDescription,
-        body: ServicesBody(),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => const ColoredBox(
+    color: Colors.white,
+    child: Section(
+      title: sectionTitle,
+      description: sectionDescription,
+      body: ServicesBody(),
+    ),
+  );
 }

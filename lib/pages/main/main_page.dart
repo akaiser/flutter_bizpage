@@ -39,18 +39,18 @@ class _MainPageState extends ConsumerState<MainPage> {
   }
 
   void _animateToOffset(double offset) => _scrollController.animateTo(
-        offset,
-        duration: const Duration(milliseconds: 1000),
-        curve: Curves.fastOutSlowIn,
-      );
+    offset,
+    duration: const Duration(milliseconds: 1000),
+    curve: Curves.fastOutSlowIn,
+  );
 
   @override
   Widget build(BuildContext context) {
     final _isFullNavigationBar = isFullNavigationBar(context.screenWidth);
 
-    final _atTopProvider = ref.read(atTopProvider.state);
-    final _introVisibleProvider = ref.read(introVisibleProvider.state);
-    final _currentSectionProvider = ref.read(currentSectionProvider.state);
+    final _atTopProvider = ref.read(atTopProvider.notifier);
+    final _introVisibleProvider = ref.read(introVisibleProvider.notifier);
+    final _currentSectionProvider = ref.read(currentSectionProvider.notifier);
 
     double reduce(int section) => _SectionHeights.entries
         .take(section)
@@ -73,10 +73,10 @@ class _MainPageState extends ConsumerState<MainPage> {
 
     int identifySection(int startSection, double currentOffset) =>
         currentOffset >= reduce(startSection)
-            ? startSection - 1
-            : startSection == 1
-                ? 0
-                : identifySection(startSection - 1, currentOffset);
+        ? startSection - 1
+        : startSection == 1
+        ? 0
+        : identifySection(startSection - 1, currentOffset);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(statusBarColor: statusBarColor),
@@ -86,7 +86,7 @@ class _MainPageState extends ConsumerState<MainPage> {
           children: [
             RefreshIndicator(
               onRefresh: () async {
-                ref.read(currentSlideProvider.state).state = 0;
+                ref.read(currentSlideProvider.notifier).state = 0;
                 await Navigator.of(context).pushReplacement(
                   MaterialPageRoute<MainPage>(
                     builder: (_) => const MainPage(),
@@ -121,6 +121,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       ...[
+                        // TODO(albert): try this https://github.com/abd99/abd_portfolio/blob/master/lib/profile_page.dart#L24
                         Intro(onActionTap: animateToSection),
                         const IntroFooter(),
                         const AboutSection(),
@@ -195,32 +196,31 @@ class _DummySection extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: ColoredBox(
-        color: color,
-        child: ResponsiveContainer(
-          child: Column(
-            children: [
-              SizedBox(
-                height: !Environment.isDesktopOrWeb &&
-                        !isFullNavigationBar(context.screenWidth)
-                    ? 29
-                    : 10,
+  Widget build(BuildContext context) => SizedBox(
+    height: height,
+    child: ColoredBox(
+      color: color,
+      child: ResponsiveContainer(
+        child: Column(
+          children: [
+            SizedBox(
+              height:
+                  !Environment.isDesktopOrWeb &&
+                      !isFullNavigationBar(context.screenWidth)
+                  ? 29
+                  : 10,
+            ),
+            ScalableText(
+              text.toUpperCase(),
+              fontSizes: const [32, 28, 26, 24],
+              textStyle: context.tt.paragraph?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
-              ScalableText(
-                text.toUpperCase(),
-                fontSizes: const [32, 28, 26, 24],
-                textStyle: context.appTextTheme.paragraph.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
 }

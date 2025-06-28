@@ -12,11 +12,10 @@ extension ListEx<T> on List<T> {
 
   List<T> get unmodifiable => List.unmodifiable(this);
 
-  List<List<T>> chunks(int chunkSize) {
-    return fold([[]], (result, x) {
-      return result.last.length == chunkSize
-          ? (result..add([x]))
-          : (result..last.add(x));
-    });
-  }
+  List<List<T>> chunks(int chunkSize) => fold(
+    [[]],
+    (result, x) => result.last.length == chunkSize
+        ? (result..add([x]))
+        : (result..last.add(x)),
+  );
 }

@@ -9,23 +9,21 @@ enum Direction {
 class Arrow extends StatelessWidget {
   const Arrow(
     this.direction, {
-    super.key,
     required this.onPressed,
+    super.key,
   });
 
   final Direction direction;
   final VoidCallback onPressed;
 
   @override
-  Widget build(BuildContext context) {
-    return HoverIconButton(
-      onPressed: onPressed,
-      padding: const EdgeInsets.all(20),
-      icon: Icon(
-        direction == Direction.backward
-            ? Icons.arrow_back_ios_outlined
-            : Icons.arrow_forward_ios_outlined,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => HoverIconButton(
+    onPressed: onPressed,
+    padding: const EdgeInsets.all(20),
+    icon: Icon(
+      direction == Direction.backward
+          ? Icons.arrow_back_ios_outlined
+          : Icons.arrow_forward_ios_outlined,
+    ),
+  );
 }
