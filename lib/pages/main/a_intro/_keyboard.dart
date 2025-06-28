@@ -3,20 +3,20 @@ import 'package:flutter/widgets.dart';
 
 class Keyboard extends StatelessWidget {
   Keyboard({
-    super.key,
     required void Function(KeyType keyType) onKeyPress,
     required this.child,
-  })  : actions = {
-          _DirectionIntent: CallbackAction<_DirectionIntent>(
-            onInvoke: (intent) => onKeyPress(intent.keyType),
-          )
-        },
-        shortcuts = {
-          LogicalKeySet(LogicalKeyboardKey.arrowLeft):
-              const _DirectionIntent.backward(),
-          LogicalKeySet(LogicalKeyboardKey.arrowRight):
-              const _DirectionIntent.forward(),
-        };
+    super.key,
+  }) : actions = {
+         _DirectionIntent: CallbackAction<_DirectionIntent>(
+           onInvoke: (intent) => onKeyPress(intent.keyType),
+         ),
+       },
+       shortcuts = {
+         LogicalKeySet(LogicalKeyboardKey.arrowLeft):
+             const _DirectionIntent.backward(),
+         LogicalKeySet(LogicalKeyboardKey.arrowRight):
+             const _DirectionIntent.forward(),
+       };
 
   final focusNode = FocusNode();
 
@@ -28,18 +28,16 @@ class Keyboard extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: focusNode.requestFocus,
-      child: FocusableActionDetector(
-        focusNode: focusNode,
-        autofocus: true,
-        shortcuts: shortcuts,
-        actions: actions,
-        child: child,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => GestureDetector(
+    onTap: focusNode.requestFocus,
+    child: FocusableActionDetector(
+      focusNode: focusNode,
+      autofocus: true,
+      shortcuts: shortcuts,
+      actions: actions,
+      child: child,
+    ),
+  );
 }
 
 enum KeyType { left, right }

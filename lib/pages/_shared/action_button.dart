@@ -6,36 +6,32 @@ import 'package:flutter_bizpage/pages/_shared/hover_region.dart';
 class ActionButton extends StatelessWidget {
   const ActionButton(
     this.text, {
-    super.key,
     required this.onTap,
+    super.key,
   });
 
   final String text;
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: HoverRegion(
-        builder: (context, isHovering, child) {
-          return AnimatedContainer(
-            duration: const Duration(milliseconds: 150),
-            decoration: BoxDecoration(
-              color: isHovering ? sgsRedColor : Colors.transparent,
-              border: Border.all(
-                width: 2,
-                color: isHovering ? sgsRedColor : Colors.white,
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
-            ),
-            child: child,
-          );
-        },
-        child: _ActionButtonText(text),
+  Widget build(BuildContext context) => GestureDetector(
+    onTap: onTap,
+    child: HoverRegion(
+      builder: (context, isHovering, child) => AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        decoration: BoxDecoration(
+          color: isHovering ? sgsRedColor : Colors.transparent,
+          border: Border.all(
+            width: 2,
+            color: isHovering ? sgsRedColor : Colors.white,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+        ),
+        child: child,
       ),
-    );
-  }
+      child: _ActionButtonText(text),
+    ),
+  );
 }
 
 class _ActionButtonText extends StatelessWidget {
@@ -44,17 +40,15 @@ class _ActionButtonText extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 8,
-        horizontal: 20,
-      ),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: context.appTextTheme.paragraph.copyWith(color: Colors.white),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(
+      vertical: 8,
+      horizontal: 20,
+    ),
+    child: Text(
+      text,
+      textAlign: TextAlign.center,
+      style: context.tt.paragraph?.copyWith(color: Colors.white),
+    ),
+  );
 }

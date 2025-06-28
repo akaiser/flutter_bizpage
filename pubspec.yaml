@@ -1,28 +1,41 @@
 name: flutter_bizpage
 description: Flutter BizPage
 publish_to: none
-version: 0.0.10
+version: 0.0.11
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
-  flutter: ">=3.3.2"
+  sdk: ^3.8.0
+  flutter: ^3.32.0
 
 dependencies:
-  device_info_plus: ^4.1.2
   flutter:
     sdk: flutter
-  flutter_riverpod: ^1.0.4
-  package_info_plus: ^1.4.3
-  url_launcher: ^6.1.5
+
+  async: ^2.13.0
+  device_info_plus: ^11.5.0
+  flutter_riverpod: ^2.6.1
+  package_info_plus: ^8.3.0
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^3.0.2
+
+  very_good_analysis: ^9.0.0
 
 flutter:
   assets:
     - google_fonts/
     - images/
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: google_fonts/OpenSans-Bold.ttf
+          weight: 700
+        - asset: google_fonts/OpenSans-Regular.ttf
+          weight: 400
+    - family: Roboto
+      fonts:
+        - asset: google_fonts/Roboto-Regular.ttf
 
   uses-material-design: true

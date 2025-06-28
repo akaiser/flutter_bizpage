@@ -18,7 +18,7 @@ class AboutBody extends StatelessWidget {
         children: [
           ...cards
               .map<Widget>((card) => Expanded(child: card))
-              .joinEx(const SizedBox(width: _itemSeparatorSize))
+              .joinEx(const SizedBox(width: _itemSeparatorSize)),
         ],
       ),
       small: (_) => Column(
@@ -36,34 +36,32 @@ class _Card extends StatelessWidget {
   final SectionData sectionData;
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 6,
-      margin: EdgeInsets.zero,
-      child: Column(
-        children: [
-          Image.asset('images/${sectionData.asset}.jpg'),
-          const SizedBox(height: 20),
-          Column(
-            children: [
-              Text(
-                sectionData.title,
-                style: context.appTextTheme.h3,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(14),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    sectionData.description,
-                    style: context.appTextTheme.paragraph.copyWith(height: 1.5),
-                  ),
+  Widget build(BuildContext context) => Card(
+    elevation: 6,
+    margin: EdgeInsets.zero,
+    child: Column(
+      children: [
+        Image.asset('images/${sectionData.asset}.jpg'),
+        const SizedBox(height: 20),
+        Column(
+          children: [
+            Text(
+              sectionData.title,
+              style: context.tt.h3,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(14),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  sectionData.description,
+                  style: context.tt.paragraph?.copyWith(height: 1.5),
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }

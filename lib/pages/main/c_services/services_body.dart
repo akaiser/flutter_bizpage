@@ -26,20 +26,18 @@ class ServicesBody extends StatelessWidget {
       ),
       medium: (_) => Column(
         // TODO(albert): more stuff here
-        children: [
-          ...services
-              .chunks(2)
-              .map<Widget>(
-                (chunk) => Row(
-                  children: [
-                    ...chunk
-                        .map<Widget>((item) => Expanded(child: item))
-                        .joinEx(const SizedBox(width: _itemSeparatorSize)),
-                  ],
-                ),
-              )
-              .joinEx(const SizedBox(height: _itemSeparatorSize)),
-        ],
+        children: services
+            .chunks(2)
+            .map<Widget>(
+              (chunk) => Row(
+                children: chunk
+                    .map<Widget>((item) => Expanded(child: item))
+                    .joinEx(const SizedBox(width: _itemSeparatorSize))
+                    .unmodifiable,
+              ),
+            )
+            .joinEx(const SizedBox(height: _itemSeparatorSize))
+            .unmodifiable,
       ),
       small: (_) => Column(
         children: services
@@ -57,7 +55,7 @@ class _Service extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = context.appTextTheme;
+    final textTheme = context.tt;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -90,7 +88,7 @@ class _Service extends StatelessWidget {
               Expanded(
                 child: Text(
                   item,
-                  style: textTheme.paragraph.copyWith(height: 1.5),
+                  style: textTheme.paragraph?.copyWith(height: 1.5),
                 ),
               ),
             ],

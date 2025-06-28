@@ -9,10 +9,10 @@ import 'package:flutter_bizpage/pages/_shared/scalable_text.dart';
 
 class Section extends StatelessWidget {
   const Section({
-    super.key,
     required this.title,
     required this.description,
     required this.body,
+    super.key,
   });
 
   final String title;
@@ -21,12 +21,13 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = context.appTextTheme.paragraph;
+    final textStyle = context.tt.paragraph;
     return ResponsiveContainer(
       child: Column(
         children: [
           SizedBox(
-            height: !Environment.isDesktopOrWeb &&
+            height:
+                !Environment.isDesktopOrWeb &&
                     !isFullNavigationBar(context.screenWidth)
                 ? 29
                 : 10,
@@ -34,7 +35,7 @@ class Section extends StatelessWidget {
           ScalableText(
             title.toUpperCase(),
             fontSizes: const [32, 28, 26, 24],
-            textStyle: textStyle.copyWith(fontWeight: FontWeight.bold),
+            textStyle: textStyle?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           const ColoredBox(
@@ -45,7 +46,7 @@ class Section extends StatelessWidget {
           FormattedText(
             text: description,
             textAlign: TextAlign.justify,
-            textStyle: textStyle.copyWith(height: 1.5),
+            textStyle: textStyle?.copyWith(height: 1.5),
           ),
           const SizedBox(height: 30),
           body,

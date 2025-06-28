@@ -8,7 +8,7 @@ extension BuildContextEx on BuildContext {
 
   double get screenWidth => mediaQueryData.size.width;
 
-  TextTheme get textTheme => Theme.of(this).textTheme;
+  ThemeData get td => Theme.of(this);
 
-  AppTextTheme get appTextTheme => AppTextTheme(textTheme);
+  AppTextTheme get tt => AppTextTheme(td.textTheme);
 }
