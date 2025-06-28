@@ -1,8 +1,8 @@
 name: Release Web
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
 jobs:
   release-web:
     runs-on: ubuntu-latest
