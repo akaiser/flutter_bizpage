@@ -15,7 +15,7 @@ dependencies:
   device_info_plus: ^11.5.0
   flutter_riverpod: ^2.6.1
   package_info_plus: ^8.3.0
-  url_launcher: ^6.3.1
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
