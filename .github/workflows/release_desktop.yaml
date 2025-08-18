@@ -19,7 +19,7 @@ jobs:
           #  build-dir: build/windows/runner/Release
     runs-on: ${{ matrix.runs-on }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/setup-flutter
       - name: Build
         run: flutter build ${{ matrix.platform }}
