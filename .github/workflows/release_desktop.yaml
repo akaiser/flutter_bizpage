@@ -9,7 +9,7 @@ jobs:
       matrix:
         include:
           #- platform: linux
-          #  runs-on: ubuntu-latest
+          #  runs-on: ubuntu-slim
           #  build-dir: build/linux/x64/release/bundle
           - platform: macos
             runs-on: macos-latest
