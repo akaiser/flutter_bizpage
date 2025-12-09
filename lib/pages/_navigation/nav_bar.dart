@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bizpage/_app_state.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/iterable.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
 import 'package:flutter_bizpage/pages/_navigation/_data.dart';
-import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 import 'package:flutter_bizpage/pages/_shared/hover_region.dart';
-import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // TODO(albert): make it 30 on landscape mobile
 const double navigationBarHeight = 68;
@@ -42,9 +40,10 @@ class _Full extends StatelessWidget {
   static const _minNavWidthForLogo = 850;
 
   @override
-  Widget build(BuildContext context) => Consumer(
-    builder: (context, ref, child) => AnimatedContainer(
-      color: ref.watch(atTopProvider) ? Colors.transparent : statusBarColor,
+  Widget build(BuildContext context) => AppStateSelector<bool>(
+    selector: (_, appState) => appState.isAtTop,
+    builder: (context, isAtTop, child) => AnimatedContainer(
+      color: isAtTop ? Colors.transparent : statusBarColor,
       duration: const Duration(milliseconds: 500),
       child: child,
     ),
@@ -85,19 +84,18 @@ class _FullMenuItem extends StatelessWidget {
     ),
     onPressed: () => onNavTap(entry.key),
     child: HoverRegion(
-      builder: (context, isHovering, child) => Consumer(
-        builder: (context, ref, child) {
-          final currentSection = ref.watch(currentSectionProvider);
-          final isRaised = entry.key == currentSection || isHovering;
-          return AnimatedDefaultTextStyle(
-            duration: const Duration(milliseconds: 150),
-            style: context.tt.medium!.copyWith(
-              fontWeight: FontWeight.w700,
-              color: isRaised ? sgsRedColor : Colors.white,
-            ),
-            child: child!,
-          );
-        },
+      builder: (context, isHovering, child) => AppStateSelector<int>(
+        selector: (_, appState) => appState.currentSection,
+        builder: (context, currentSection, child) => AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 150),
+          style: context.tt.medium!.copyWith(
+            fontWeight: FontWeight.w700,
+            color: entry.key == currentSection || isHovering
+                ? sgsRedColor
+                : Colors.white,
+          ),
+          child: child!,
+        ),
         child: child,
       ),
       child: Text(entry.value.text.toUpperCase()),
@@ -115,12 +113,13 @@ class _Compact extends StatelessWidget {
     alignment: Alignment.centerRight,
     child: Padding(
       padding: _navigationBarHorizontalPadding,
-      child: Consumer(
-        builder: (context, ref, child) => AnimatedContainer(
+      child: AppStateSelector<bool>(
+        selector: (_, appState) => appState.isIntroVisible,
+        builder: (context, isIntroVisible, child) => AnimatedContainer(
           duration: const Duration(milliseconds: 500),
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(6)),
-            color: ref.watch(introVisibleProvider)
+            color: isIntroVisible
                 ? Colors.transparent
                 : const Color.fromRGBO(0, 0, 0, 0.6),
           ),
@@ -154,23 +153,20 @@ class _Compact extends StatelessWidget {
   );
 }
 
-class _CompactMenuItem extends ConsumerWidget {
+class _CompactMenuItem extends StatelessWidget {
   const _CompactMenuItem(this.entry);
 
   final MapEntry<int, NavigationItem> entry;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final fontStyle = context.tt.medium?.copyWith(
-      fontWeight: FontWeight.w700,
-    );
-    return Text(
+  Widget build(BuildContext context) => AppStateSelector<int>(
+    selector: (_, appState) => appState.currentSection,
+    builder: (context, currentSection, child) => Text(
       entry.value.text.toUpperCase(),
-      style: fontStyle?.copyWith(
-        color: ref.watch(currentSectionProvider) != entry.key
-            ? Colors.black
-            : sgsRedColor,
+      style: context.tt.medium?.copyWith(
+        fontWeight: FontWeight.w700,
+        color: currentSection != entry.key ? Colors.black : sgsRedColor,
       ),
-    );
-  }
+    ),
+  );
 }

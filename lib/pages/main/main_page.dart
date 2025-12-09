@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bizpage/_app_state.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/iterable.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/_utils/environment.dart';
-import 'package:flutter_bizpage/pages/_navigation/_state.dart';
 import 'package:flutter_bizpage/pages/_navigation/nav_bar.dart';
 import 'package:flutter_bizpage/pages/_shared/measure_size.dart';
 import 'package:flutter_bizpage/pages/_shared/responsive_container.dart';
 import 'package:flutter_bizpage/pages/_shared/scalable_text.dart';
-import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/intro.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/intro_footer.dart';
 import 'package:flutter_bizpage/pages/main/b_about/about_section.dart';
 import 'package:flutter_bizpage/pages/main/c_services/services_section.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MainPage extends ConsumerStatefulWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
   @override
-  ConsumerState<MainPage> createState() => _MainPageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends ConsumerState<MainPage> {
-  late ScrollController _scrollController;
+class _MainPageState extends State<MainPage> {
+  late final AppState _appState = context.appState;
 
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-  }
+  final _scrollController = ScrollController();
 
   @override
   void dispose() {
@@ -48,20 +42,10 @@ class _MainPageState extends ConsumerState<MainPage> {
   Widget build(BuildContext context) {
     final _isFullNavigationBar = isFullNavigationBar(context.screenWidth);
 
-    final _atTopProvider = ref.read(atTopProvider.notifier);
-    final _introVisibleProvider = ref.read(introVisibleProvider.notifier);
-    final _currentSectionProvider = ref.read(currentSectionProvider.notifier);
-
     double reduce(int section) => _SectionHeights.entries
         .take(section)
         .map((entry) => entry.value)
         .reduce((a, b) => a + b);
-
-    void updateSection(int section) {
-      if (_currentSectionProvider.state != section) {
-        _currentSectionProvider.state = section;
-      }
-    }
 
     double navBarOffset() => _isFullNavigationBar
         ? navigationBarHeight + context.mediaQueryData.padding.top
@@ -86,7 +70,7 @@ class _MainPageState extends ConsumerState<MainPage> {
           children: [
             RefreshIndicator(
               onRefresh: () async {
-                ref.read(currentSlideProvider.notifier).state = 0;
+                _appState.currentSlide = 0;
                 await Navigator.of(context).pushReplacement(
                   MaterialPageRoute<MainPage>(
                     builder: (_) => const MainPage(),
@@ -99,17 +83,15 @@ class _MainPageState extends ConsumerState<MainPage> {
                     final metrics = notification.metrics;
                     final currentOffset = metrics.pixels;
                     final isAtTop = metrics.atEdge && currentOffset == 0;
-                    if (_atTopProvider.state != isAtTop) {
-                      _atTopProvider.state = isAtTop;
-                    }
-
                     final isIntroVisible = currentOffset < context.screenHeight;
-                    if (_introVisibleProvider.state != isIntroVisible) {
-                      _introVisibleProvider.state = isIntroVisible;
-                    }
-
                     final calculatedOffset = currentOffset + navBarOffset();
-                    updateSection(identifySection(6, calculatedOffset));
+                    _appState
+                      ..isAtTop = isAtTop
+                      ..isIntroVisible = isIntroVisible
+                      ..currentSection = identifySection(
+                        6,
+                        calculatedOffset,
+                      );
                   }
                   return true;
                 },

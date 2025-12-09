@@ -1,7 +1,5 @@
-// ignore_for_file: prefer_const_declarations
 import 'dart:io' as io;
 
-// ignore: avoid_classes_with_only_static_members
 abstract class System {
   /// Whether the platform is Web
   static const bool isWeb = identical(0, 0.0);

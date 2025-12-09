@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bizpage/_app_state.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
-import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SlideIndicators extends ConsumerWidget {
+class SlideIndicators extends StatelessWidget {
   const SlideIndicators({
     required this.onTap,
     super.key,
@@ -13,9 +12,9 @@ class SlideIndicators extends ConsumerWidget {
   final void Function(int introId) onTap;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentSlide = ref.watch(currentSlideProvider);
-    return Row(
+  Widget build(BuildContext context) => AppStateSelector<int>(
+    selector: (_, appState) => appState.currentSlide,
+    builder: (context, currentSlide, _) => Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         ...introData.entries.map(
@@ -25,8 +24,8 @@ class SlideIndicators extends ConsumerWidget {
           ),
         ),
       ],
-    );
-  }
+    ),
+  );
 }
 
 class _SlideIndicator extends StatelessWidget {

@@ -75,8 +75,8 @@ class FormattedText extends StatelessWidget {
 
   GestureRecognizer _onLinkTapRecognizer(BuildContext context, String? link) =>
       TapGestureRecognizer()
-        ..onTap = () {
-          Feedback.forTap(context);
+        ..onTap = () async {
+          await Feedback.forTap(context);
           //context.injection.dispatch(
           //  NavigateToUrlAction(
           //    link.contains('@') ? 'mailto:$link' : 'https://$link',

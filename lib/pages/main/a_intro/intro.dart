@@ -1,16 +1,15 @@
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bizpage/_app_state.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_prefs.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_data.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/_keyboard.dart';
-import 'package:flutter_bizpage/pages/main/a_intro/_state.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/arrow.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/middle.dart';
 import 'package:flutter_bizpage/pages/main/a_intro/slide_indicators.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Intro extends ConsumerStatefulWidget {
+class Intro extends StatefulWidget {
   const Intro({
     required this.onActionTap,
     super.key,
@@ -19,12 +18,12 @@ class Intro extends ConsumerStatefulWidget {
   final void Function(int section) onActionTap;
 
   @override
-  ConsumerState<Intro> createState() => _IntroState();
+  State<Intro> createState() => _IntroState();
 }
 
-class _IntroState extends ConsumerState<Intro> {
-  late PageController _pageController;
-  late RestartableTimer _timer;
+class _IntroState extends State<Intro> {
+  late final PageController _pageController;
+  late final RestartableTimer _timer;
 
   @override
   void initState() {
@@ -85,7 +84,7 @@ class _IntroState extends ConsumerState<Intro> {
               controller: _pageController,
               onPageChanged: (slide) {
                 _timer.reset();
-                ref.read(currentSlideProvider.notifier).state = slide;
+                context.appState.currentSlide = slide;
               },
               children: [
                 ...introData.entries.map(
