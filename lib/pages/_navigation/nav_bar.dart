@@ -3,7 +3,7 @@ import 'package:flutter_bizpage/_app_state.dart';
 import 'package:flutter_bizpage/_extensions/build_context.dart';
 import 'package:flutter_bizpage/_extensions/iterable.dart';
 import 'package:flutter_bizpage/_prefs.dart';
-import 'package:flutter_bizpage/_utils/environment.dart';
+import 'package:flutter_bizpage/_version.dart';
 import 'package:flutter_bizpage/pages/_navigation/_data.dart';
 import 'package:flutter_bizpage/pages/_shared/breakpoint.dart';
 import 'package:flutter_bizpage/pages/_shared/hover_region.dart';
@@ -53,7 +53,7 @@ class _Full extends StatelessWidget {
         children: [
           if (context.screenWidth > _minNavWidthForLogo)
             Text(
-              'BizPage v${Environment.appVersion}',
+              'BizPage v$packageVersion',
               style: context.tt.medium?.copyWith(
                 fontWeight: FontWeight.w700,
                 color: Colors.white,

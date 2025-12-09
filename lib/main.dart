@@ -17,7 +17,7 @@ Future<void> main() async {
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
 
-  await Environment.init();
+  Environment.init();
 
   await Future.wait(
     introData.values
